@@ -1,8 +1,10 @@
+<!--<script src="/libs/js/jquery-3.3.1.min.js"></script>-->
 
 <script src="/libs/js/popper.min.js" ></script>
 <script src="/libs/js/bootstrap.js" ></script>
 <script src="/libs/js/mdb.js" ></script>
 
+<script src="/libs/js/compiled.min.js" defer></script>
 
 <!--<script src="/libs/js/bootstrap.min.js"></script>-->
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -26,5 +28,3 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js">
 </script>
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-
-<script src="/libs/js/compiled.min.js" ></script>

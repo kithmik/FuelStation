@@ -36,7 +36,5 @@
 
 
     </div>
-
-    </div>
 </nav>
 <!-- Navbar -->

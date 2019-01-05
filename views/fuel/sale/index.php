@@ -7,7 +7,7 @@ if(!isset($_SESSION['user'])){
     exit(0);
 }*/
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($document_root."/controllers/deo/fuel/index.php");
+require_once ($document_root."/controllers/deo/fuel/sale/index.php");
 
 $update_path = $document_root."/controllers/deo/fuel/update.php";
 $delete_path = $document_root."/controllers/deo/fuel/delete.php";

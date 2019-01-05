@@ -23,7 +23,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/controllers/fuel/sale/report.php");
     </thead>
     <tbody>
     <?php
-    foreach ()
+//    foreach ()
     ?>
     </tbody>
 
