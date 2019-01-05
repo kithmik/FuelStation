@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2019 at 07:11 PM
+-- Generation Time: Jan 05, 2019 at 06:48 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fuel_new`
+-- Database: `fuel_station`
 --
 
 -- --------------------------------------------------------
@@ -63,10 +63,19 @@ CREATE TABLE `debtorfuelsale` (
   `DebtorId` varchar(20) NOT NULL,
   `FuelId` varchar(20) NOT NULL,
   `PumpId` varchar(20) NOT NULL,
+  `PumperId` varchar(100) NOT NULL,
   `Date` date NOT NULL,
   `Amount` float NOT NULL,
   `Time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `debtorfuelsale`
+--
+
+INSERT INTO `debtorfuelsale` (`id`, `DebtorId`, `FuelId`, `PumpId`, `PumperId`, `Date`, `Amount`, `Time`) VALUES
+(1, '001', 'PET921', '1', '', '2019-01-01', 1344, '13:20:00'),
+(2, '12', 'LAD001', '22', '', '2019-01-02', 765, '22:10:00');
 
 -- --------------------------------------------------------
 
@@ -104,6 +113,13 @@ CREATE TABLE `employee` (
   `BasicSalary` float NOT NULL,
   `Allowances` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`id`, `NIC`, `EmpId`, `FirstName`, `LastName`, `DOB`, `Address`, `TelephoneNo`, `Email`, `Type`, `Password`, `BasicSalary`, `Allowances`) VALUES
+(3, '957062822V', '12', 'hdst', 'sdxsa', '2019-01-01', 'sxczx', 21435, 'ki@gmail.com', 'Data Entry Operator', '123', 234, 232);
 
 -- --------------------------------------------------------
 
@@ -150,7 +166,8 @@ INSERT INTO `fuelprice` (`id`, `FuelId`, `UnitPrice`, `UnitPricedDate`) VALUES
 (2, 'PET951', 149, '2019-01-04'),
 (3, 'LAD001', 101, '2019-01-04'),
 (4, 'LSD001', 121, '2019-01-04'),
-(5, 'KERO01', 70, '2019-01-04');
+(5, 'KERO01', 70, '2019-01-04'),
+(6, 'PET921', 153, '2019-01-08');
 
 -- --------------------------------------------------------
 
@@ -176,14 +193,27 @@ CREATE TABLE `fuelsale` (
   `id` int(100) NOT NULL,
   `PumpId` varchar(20) NOT NULL,
   `PumperId` varchar(20) NOT NULL,
+  `Date` date NOT NULL,
   `OMReading` float NOT NULL,
   `CMReading` float NOT NULL,
-  `Stime` datetime NOT NULL,
-  `Etime` datetime NOT NULL,
+  `Stime` time NOT NULL,
+  `Etime` time NOT NULL,
+  `TotalAmount` float NOT NULL,
+  `Cashsale` float NOT NULL,
   `DebtorSales` float NOT NULL,
-  `CardSales` float NOT NULL,
-  `Shortages` float NOT NULL
+  `CardSales` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fuelsale`
+--
+
+INSERT INTO `fuelsale` (`id`, `PumpId`, `PumperId`, `Date`, `OMReading`, `CMReading`, `Stime`, `Etime`, `TotalAmount`, `Cashsale`, `DebtorSales`, `CardSales`) VALUES
+(1, '123', '456', '2019-01-02', 0, 0, '00:00:00', '00:00:00', 0, 0, 0, 0),
+(2, '789', '135', '2019-01-03', 0, 0, '00:00:00', '00:00:00', 0, 0, 0, 0),
+(3, '789', '456', '2019-01-06', 0, 0, '00:00:00', '00:00:00', 0, 0, 0, 0),
+(4, '3445', '5235', '2019-01-04', 24, 124, '03:14:00', '14:21:00', 0, 314, 0, 23423),
+(5, '3445', '5235', '2019-01-05', 24, 124, '03:14:00', '14:21:00', 100, 314, 0, 23423);
 
 -- --------------------------------------------------------
 
@@ -233,10 +263,11 @@ CREATE TABLE `lubricantsale` (
   `id` int(100) NOT NULL,
   `LubricantId` varchar(20) NOT NULL,
   `Date` date NOT NULL,
+  `NoOfItems` int(11) NOT NULL,
+  `TotalAmount` float NOT NULL,
   `Cashsale` float NOT NULL,
   `Debtorsale` float NOT NULL,
-  `Cardsale` float NOT NULL,
-  `NoOfItems` int(11) NOT NULL
+  `Cardsale` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -248,9 +279,15 @@ CREATE TABLE `lubricantsale` (
 CREATE TABLE `pump` (
   `id` int(100) NOT NULL,
   `PumpId` varchar(20) NOT NULL,
-  `FuelId` varchar(20) NOT NULL,
   `TankId` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pump`
+--
+
+INSERT INTO `pump` (`id`, `PumpId`, `TankId`) VALUES
+(1, '001', '002');
 
 -- --------------------------------------------------------
 
@@ -261,7 +298,7 @@ CREATE TABLE `pump` (
 CREATE TABLE `pumper` (
   `id` int(100) NOT NULL,
   `NIC` varchar(20) NOT NULL,
-  `EmpId` varchar(20) NOT NULL,
+  `EmpId` varchar(20) DEFAULT NULL,
   `FirstName` varchar(20) NOT NULL,
   `LastName` varchar(20) NOT NULL,
   `DOB` date NOT NULL,
@@ -271,6 +308,13 @@ CREATE TABLE `pumper` (
   `Allowances` int(11) NOT NULL,
   `OTRate` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pumper`
+--
+
+INSERT INTO `pumper` (`id`, `NIC`, `EmpId`, `FirstName`, `LastName`, `DOB`, `Address`, `TelephoneNo`, `BasicSalary`, `Allowances`, `OTRate`) VALUES
+(1, '943132v', NULL, 'dsf', 'fd', '2019-01-02', 'dfv', 2324, 322, 232, 23);
 
 -- --------------------------------------------------------
 
@@ -313,6 +357,13 @@ CREATE TABLE `tank` (
   `FuelId` varchar(20) NOT NULL,
   `Capacity` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tank`
+--
+
+INSERT INTO `tank` (`id`, `TankId`, `FuelId`, `Capacity`) VALUES
+(1, '002', 'PET921', 2113);
 
 -- --------------------------------------------------------
 
@@ -467,7 +518,7 @@ ALTER TABLE `debtorbalance`
 -- AUTO_INCREMENT for table `debtorfuelsale`
 --
 ALTER TABLE `debtorfuelsale`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `debtorlubsale`
@@ -479,7 +530,7 @@ ALTER TABLE `debtorlubsale`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `fuel`
@@ -491,7 +542,7 @@ ALTER TABLE `fuel`
 -- AUTO_INCREMENT for table `fuelprice`
 --
 ALTER TABLE `fuelprice`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fuelpurchase`
@@ -503,7 +554,7 @@ ALTER TABLE `fuelpurchase`
 -- AUTO_INCREMENT for table `fuelsale`
 --
 ALTER TABLE `fuelsale`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `lubricant`
@@ -533,13 +584,13 @@ ALTER TABLE `lubricantsale`
 -- AUTO_INCREMENT for table `pump`
 --
 ALTER TABLE `pump`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pumper`
 --
 ALTER TABLE `pumper`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `salary`
@@ -557,7 +608,7 @@ ALTER TABLE `salarydetails`
 -- AUTO_INCREMENT for table `tank`
 --
 ALTER TABLE `tank`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tankfill`
