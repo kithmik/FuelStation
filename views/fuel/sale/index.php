@@ -1,11 +1,11 @@
 <?php
-/*if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(!isset($_SESSION['user'])){
     header("Location: ".$_SERVER['DOCUMENT_ROOT']."/index.php");
     exit(0);
-}*/
+}
 $document_root = $_SERVER['DOCUMENT_ROOT'];
 require_once ($document_root."/controllers/deo/fuel/sale/index.php");
 

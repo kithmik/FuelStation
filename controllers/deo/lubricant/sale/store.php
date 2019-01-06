@@ -5,9 +5,9 @@ if (isset($_POST['submit'])){
     $date = $_POST['Date'];
     $no_of_items = $_POST['NoOfItems'];
 
-    $price_sql = "SELECT * FROM lubricantprice WHERE `LubricantId` = '$lubricant_id' AND `UnitPricedDate` >= '$date' ORDER BY `UnitPricedDate` LIMIT 1";
-    /*echo $price_sql;
-    exit(0);*/
+    $price_sql = "SELECT * FROM lubricantprice WHERE `LubricantId` = '$lubricant_id' AND `UnitPricedDate` <= '$date' ORDER BY `UnitPricedDate` DESC LIMIT 1";
+//    echo $price_sql;
+//    exit(0);
     $price_data = customGetData($price_sql);
 
     if (count($price_data) == 1){

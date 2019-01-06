@@ -10,7 +10,7 @@
         <a href="#" class="list-group-item active waves-effect">
             <i class="fas fa-chart-pie mr-3"></i>Dashboard
         </a>
-        <a href="#" class="list-group-item active waves-effect">
+        <a href="#" class="list-group-item waves-effect">
             <i class="fas fa-chart-pie mr-3"></i>User Manuals
         </a>
         <?php
@@ -42,16 +42,16 @@
                 </a>
         </div>
 
-            <a class="list-group-item waves-effect"  data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <a class="list-group-item waves-effect"  data-toggle="collapse" href="#saleMenu" aria-expanded="false" aria-controls="saleMenu">
                 <i class="fa fa-table mr-3"></i>Sales <i class="fa fa-angle-down"></i>
             </a>
 
             <!-- Collapsible element -->
-            <div class="collapse list-group list-group-flush ml-4" id="collapseExample">
-                <a href="/views/fuel" class="list-group-item  waves-effect">
+            <div class="collapse list-group list-group-flush ml-4" id="saleMenu">
+                <a href="/views/fuel/sale/index.php" class="list-group-item  waves-effect">
                     <i class="fa fa-sun-o mr-3"></i>Fuel Sales
                 </a>
-                <a href="/views/lubricant" class="list-group-item waves-effect">
+                <a href="/views/lubricant/sale/index.php" class="list-group-item waves-effect">
                     <i class="fa fa-bars mr-3"></i>Lubricant Sales
                 </a>
 
@@ -71,16 +71,16 @@
 
             <!-- Collapsible element -->
             <div class="collapse list-group list-group-flush ml-4" id="collapseExample">
-                <a href="/views/fuel" class="list-group-item  waves-effect">
+                <a href="/views/fuel/sale/report.php" class="list-group-item  waves-effect">
                     <i class="fa fa-sun-o mr-3"></i>Fuel Sales
                 </a>
-                <a href="/views/lubricant" class="list-group-item waves-effect">
+                <a href="/views/lubricant/sale/report.php" class="list-group-item waves-effect">
                     <i class="fa fa-bars mr-3"></i>Lubricant Sales
                 </a>
-                <a href="/views/lubricant" class="list-group-item waves-effect">
+                <a href="/views/fuel/purchase/reportcreate.php" class="list-group-item waves-effect">
                     <i class="fa fa-bars mr-3"></i>Fuel Purchase
                 </a>
-                <a href="/views/lubricant" class="list-group-item waves-effect">
+                <a href="/views/lubricant/" class="list-group-item waves-effect">
                     <i class="fa fa-bars mr-3"></i>Lubricant Purchase
                 </a>
 

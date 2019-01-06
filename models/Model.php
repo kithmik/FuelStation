@@ -64,6 +64,7 @@ function insert($table, $data){
 
         if ($conn->query($sql) === TRUE){
             $_SESSION['status'] = "Record was successfully inserted to $table";
+
             return $conn->insert_id;
         }
     }
