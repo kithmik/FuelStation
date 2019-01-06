@@ -7,10 +7,10 @@ if(!isset($_SESSION['user'])){
     exit(0);
 }
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($document_root."/controllers/deo/fuel/index.php");
+require_once ($document_root."/controllers/deo/fuelprice/index.php");
 
-$update_path = "/controllers/deo/fuel/update.php";
-$delete_path = "/controllers/deo/fuel/delete.php";
+$update_path = "/controllers/deo/fuelprice/update.php";
+$delete_path = "/controllers/deo/fuelprice/delete.php";
 
 $include_path = $document_root."/views/includes";
 
@@ -19,7 +19,7 @@ $include_path = $document_root."/views/includes";
 <!doctype html>
 <html>
 <head>
-    <title>Fuel Management System</title>
+    <title>Fuel Price Register</title>
     <?php
     include_once($include_path."/styles.php");
     ?>
@@ -39,14 +39,14 @@ include_once($include_path."/navbar.php");
         <div class="col-md-7 pt-5">
             <div class="card">
                 <div class="card-header">
-                    Fuel Register
+                    Fuel Price Register
 
                 </div>
                 <div class="card-body">
 
                     <div class="row">
                         <div class="col">
-                            <a href="/views/fuel/sale/create.php" class="btn btn-success">
+                            <a href="/views/fuelprice/create.php" class="btn btn-success">
                                 Create New  <i class="fa fa-plus" aria-expanded="false"></i>
                             </a>
                         </div>
@@ -58,20 +58,21 @@ include_once($include_path."/navbar.php");
                             <thead>
                             <tr>
 <!--                                <th>ID</th>-->
-                                <th>FuelID</th>
-                                <th>Fuel Type</th>
+                                <th>FuelId</th>
+                                <th>UnitPrice</th>
+                                <th>UnitPricedDate</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($fuels as $fuel){
-                                $id = $fuel["id"];
+                            foreach ($fuelprices as $fuelprice){
+                                $id = $fuelprice["id"];
                                 echo "<tr>";
 //                                echo "<td>$id</td>";
-                                echo "<td>".$fuel["FuelId"]."</td>";
-                                echo "<td>".$fuel["FuelName"]."</td>";
-
+                                echo "<td>".$fuelprice["FuelId"]."</td>";
+                                echo "<td>".$fuelprice["UnitPrice"]."</td>";
+                                echo "<td>".$fuelprice["UnitPricedDate"]."</td>";
                                 echo "<td>";
                                 echo "<button class='btn btn-warning edit-modal-btn btn-sm' type='button' data-toggle='modal' data-target='#edit-modal' data-id='$id'>Edit</button>";
                                 echo "<button class='btn btn-danger btn-sm delete-modal-btn' type='button' data-toggle='modal' data-target='#delete-modal' data-id='$id'>Delete</button>";
@@ -111,10 +112,15 @@ include_once($include_path."/navbar.php");
                                             <input type="text" class="form-control" id="FuelId" name="FuelId" value="" placeholder="Fuel ID" required autofocus> </div>
 
 
-                                        <label class="control-label col-sm-2" for="FuelName">Fuel Type:</label>
+                                        <label class="control-label col-sm-2" for="UnitPrice">Unit Price:</label>
                                         <div class="col-sm-4">
 
-                                            <input type="text" class="form-control" id="FuelName" name="FuelName" value="" placeholder="Fuel Type" required autofocus> </div>
+                                            <input type="text" class="form-control" id="UnitPrice" name="UnitPrice" value="" placeholder="Unit Price" required> </div>
+
+                                        <label class="control-label col-sm-2" for="UnitPricedDate">Unit Priced Date:</label>
+                                        <div class="col-sm-4">
+
+                                            <input type="text" class="form-control" id="UnitPricedDate" name="UnitPricedDate" value="" placeholder="Unit Priced Date" required autofocus> </div>
 
                                     </div>
                                     <div class="form-group">
@@ -186,7 +192,7 @@ include_once($include_path."/navbar.php");
 
 
     <script>
-        var fuels = JSON.parse('<?php echo(json_encode($fuels)); ?>');
+        var fuels = JSON.parse('<?php echo(json_encode($fuelprices)); ?>');
 
         $(document).ready(function () {
 
@@ -255,27 +261,6 @@ include_once($include_path."/navbar.php");
 
     ?>
 
-    <script>
-        $(document).ready(function() {
-            $('#fuel-data').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                lengthChange: false,
-                buttons: [
 
-                    { extend: 'print', className: 'btn btn-outline-info m-1 p-1' },
-                    {
-                        extend: 'excelHtml5', className: 'btn btn-outline-info m-1 p-1'
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A3', className: 'btn btn-outline-info m-1 p-1'
-                    },
-                    { extend: 'colvis', className: 'btn btn-outline-info m-1 p-1' },
-                ]
-            });
-        });
-    </script>
 </body>
 </html>

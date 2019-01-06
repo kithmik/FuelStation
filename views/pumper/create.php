@@ -1,17 +1,17 @@
 <?php
-/*if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(!isset($_SESSION['user'])){
     header("Location: ".$_SERVER['DOCUMENT_ROOT']."/index.php");
     exit(0);
-}*/
+}
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($document_root."/controllers/deo/fuel/index.php");
+require_once ($document_root."/controllers/deo/pumper/index.php");
 
-$update_path = $document_root."/controllers/deo/fuel/update.php";
-$delete_path = $document_root."/controllers/deo/fuel/delete.php";
-$create_path = $document_root."/controllers/deo/fuel/store.php";
+$update_path = "/controllers/deo/pumper/update.php";
+$delete_path = "/controllers/deo/pumper/delete.php";
+$create_path = "/controllers/deo/pumper/store.php";
 
 $include_path = $document_root."/views/includes";
 
@@ -19,7 +19,7 @@ $include_path = $document_root."/views/includes";
 <!doctype html>
 <html>
 <head>
-    <title>pump register</title>
+    <title>Pumper Register</title>
     <?php
     include_once($include_path."/styles.php");
     ?>
@@ -108,8 +108,10 @@ include_once($include_path."/navbar.php");
 
                         </div>
 
+                        <div class="md-form">
+                            <input type="submit" name="submit" value="Submit" class="form-control btn btn-primary">
+                        </div>
 
-                        <input type="submit" value="Submit" class="form-control btn btn-primary">
                     </form>
 
 

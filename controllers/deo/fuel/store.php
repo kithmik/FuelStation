@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $fuel_price = insert("fuelprice", $_POST);
 
-        echo "<script>window.alert('Successfully added !');";
-
+//        echo "<script>window.alert('Successfully added !');";
+        $_SESSION['status'] = "Record was successfully inserted!";
         if (isset($_SERVER['HTTP_REFERER'])){
             header("Location: ".$_SERVER['HTTP_REFERER']);
         }

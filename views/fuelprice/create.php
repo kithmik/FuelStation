@@ -9,9 +9,9 @@ if(!isset($_SESSION['user'])){
 $document_root = $_SERVER['DOCUMENT_ROOT'];
 require_once ($document_root."/controllers/deo/fuel/index.php");
 
-$update_path = $document_root."/controllers/deo/fuel/update.php";
-$delete_path = $document_root."/controllers/deo/fuel/delete.php";
-$create_path = $document_root."/controllers/deo/fuel/store.php";
+$update_path = "/controllers/deo/fuel/update.php";
+$delete_path = "/controllers/deo/fuel/delete.php";
+$create_path = "/controllers/deo/fuel/store.php";
 
 $include_path = $document_root."/views/includes";
 
@@ -47,12 +47,12 @@ include_once($include_path."/navbar.php");
                     <form action="<?php echo $create_path; ?>" method="post">
 
                         <label for="fuelid">Fuel ID</label><br>
-                        <select name="fuelid">
+                        <select name="fuelid" id="fuelid" class="mdb-select md-form">
                             <?php
 
-                            include "../../dbConnect/dbConnect.php";
+
                             $count=0;
-                            $conn=dbConnect();
+
 
                             $sql="SELECT FuelId from Fuel";
 
@@ -60,6 +60,8 @@ include_once($include_path."/navbar.php");
 
                             if($result->num_rows>0){
                                 while($row=$result->fetch_assoc()){
+//                                    print_r($row);
+//                                    exit(0);
                                     $n=$row['FuelId'];
                                     echo "<option value='$n'>".$row['FuelId']."</option>";
 
@@ -80,7 +82,7 @@ include_once($include_path."/navbar.php");
 
                         <div class="md-form">
                             <label for="unitpriceddate">Unit Priced Date</label><br>
-                            <input class="form-control" type="text" id="unitpriceddate" name="unitpriceddate" required><br>
+                            <input class="form-control " type="date" id="unitpriceddate" name="unitpriceddate" required><br>
 
                         </div>
 
@@ -108,6 +110,7 @@ include_once($include_path."/navbar.php");
     include_once($include_path."/scripts.php");
     include_once ($include_path.'/footer.php');
     ?>
+
 
 </body>
 </html>

@@ -1,11 +1,11 @@
 <?php
-/*if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(!isset($_SESSION['user'])){
     header("Location: ".$_SERVER['DOCUMENT_ROOT']."/index.php");
     exit(0);
-}*/
+}
 $document_root = $_SERVER['DOCUMENT_ROOT'];
 require_once ($document_root."/controllers/deo/pump/index.php");
 
@@ -13,7 +13,7 @@ $update_path = "/controllers/deo/fuel/update.php";
 $delete_path = "/controllers/deo/fuel/delete.php";
 $create_path = "/controllers/deo/fuel/store.php";
 
-$include_path = "/views/includes";
+$include_path = $document_root."/views/includes";
 
 ?>
 <!doctype html>
@@ -51,7 +51,7 @@ include_once($include_path."/navbar.php");
 
 
                         <div class="md-form">
-                            <label for="fuelid">Pump ID</label><br>
+                            <label for="pumpid">Pump ID</label><br>
                             <input class="form-control" type="text" id="pumpid" name="pumpid" required><br>
 
                         </div>
@@ -71,10 +71,10 @@ include_once($include_path."/navbar.php");
 
                         </div>
 
+                        <div class="md-form">
+                            <input type="submit" value="Submit" class="form-control btn btn-primary">
+                        </div>
 
-
-
-                        <input type="submit" value="Submit" class="form-control btn btn-primary">
                     </form>
 
 

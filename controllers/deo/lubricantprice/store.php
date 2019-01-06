@@ -22,11 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 
     $LubId=$_POST['lubid'];
-    $LubType=$_POST['ltype'];
+    $UnitPrice=$_POST['uprice'];
+    $UpDate=$_POST['update'];
 
 
 
-    $sql="INSERT INTO Lubricant(LubricantId,LubricantName) VALUES ('$LubId','$LubType')";
+    $sql="INSERT INTO LubricantPrice(LubricantId,UnitPrice,UnitPricedDate) VALUES ('$FuelId','$UnitPrice','$UpDate')";
 
 
     if ($conn->query($sql) === TRUE) {
@@ -34,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //        echo "<script>window.alert('Successfully added !');";
         $_SESSION['status'] = "Record was successfully inserted!";
         if (isset($_SERVER['HTTP_REFERER'])){
-            header("Location: /views/lubricant/index.php");
+            header("Location: ".$_SERVER['HTTP_REFERER']);
         }
 
     } else {

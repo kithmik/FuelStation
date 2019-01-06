@@ -7,25 +7,20 @@ if (isset($_POST['submit'])){
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $NIC=$_POST['nic'];
-        $PumperId=$_POST['pumperid'];
-        $FirstName=$_POST['firstname'];
-        $LastName=$_POST['lastname'];
-        $DOB=$_POST['dob'];
-        $Address=$_POST['address'];
-        $cno=$_POST['cno'];
-        $Basicsalary=$_POST['basicsalary'];
-        $Allowances=$_POST['allowances'];
+
+        $TankId=$_POST['tankid'];
+        $FuelId=$_POST['fuelid'];
+        $Capacity=$_POST['capacity'];
 
 
-        $sql="INSERT INTO Pumper(NIC,PumperId,FirstName,LastName,DOB,Address,TelephoneNo,BasicSalary,Allowances) VALUES ('$NIC','$PumperId,'$FirstName','$LastName','$DOB','$Address','$cno','$Basicsalary','Allowances')";
+        $sql="INSERT INTO Tank(TankId,FuelId,Capacity) VALUES ('$TankId','$FuelId','$Capacity')";
 
 
         if ($conn->query($sql) === TRUE) {
 //            echo "<script>window.alert('Successfully added !');
 //    			window.location='pumpregdeo.php'</script>";
             $_SESSION['status'] = "Record was successfully inserted!";
-            header("Location: /views/pumper/");
+            header("Location: /views/tank/");
 
 
         } else {

@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 $serverName = "localhost";
 $username = "root";
@@ -107,19 +110,20 @@ function update($table, $data, $where){
 function delete($table, $where){
     global $conn;
 
-    $where = filterDataForTable($table, $where);
+//    $where = filterDataForTable($table, $where);
+
 
     if ($where != null){
 
         if (is_array($where)){
             array_walk($where, "prepareToUpdate");
-
-            $where = implode(", ", $where);
+/*
+            $where = implode(", ", $where);*/
         }
 
 
 
-        $sql = "DELETE $table WHERE $where";
+        $sql = "DELETE FROM $table WHERE $where";
         if ($conn->query($sql) === TRUE){
             $_SESSION['status'] = "Record was successfully deleted in $table";
             return true;
@@ -147,11 +151,14 @@ function getData($table, $fields = "*", $where = "1"){
     $sql = "SELECT $fields FROM $table WHERE $where";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0){
-        while ($row = $result->fetch_assoc()){
-            array_push($dataset, $row);
+    if (isset($result) && $result != null){
+        if ($result->num_rows > 0){
+            while ($row = $result->fetch_assoc()){
+                array_push($dataset, $row);
+            }
         }
     }
+
 
     return $dataset;
 }

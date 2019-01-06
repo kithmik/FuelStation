@@ -22,22 +22,28 @@
 
         <!-- Collapsible element -->
         <div class="collapse list-group list-group-flush ml-4" id="collapseExample">
-            <a href="/views/fuel" class="list-group-item  waves-effect">
-                <i class="fa fa-sun-o mr-3"></i>Fuel
-            </a>
-            <a href="/views/lubricant" class="list-group-item waves-effect">
-                <i class="fa fa-bars mr-3"></i>Lubricant
-            </a>
+                <a href="/views/fuel" class="list-group-item  waves-effect">
+                    <i class="fa fa-sun-o mr-3"></i>Fuel
+                </a>
+                <a href="/views/fuelprice" class="list-group-item  waves-effect">
+                    <i class="fa fa-sun-o mr-3"></i>Fuel Price
+                </a>
                 <a href="/views/lubricant" class="list-group-item waves-effect">
+                    <i class="fa fa-bars mr-3"></i>Lubricant
+                </a>
+                <a href="/views/lubricantprice" class="list-group-item waves-effect">
+                    <i class="fa fa-bars mr-3"></i>Lubricant price
+                </a>
+                <a href="/views/pumper" class="list-group-item waves-effect">
                     <i class="fa fa-bars mr-3"></i>Pumper
                 </a>
-                <a href="/views/lubricant" class="list-group-item waves-effect">
+                <a href="/views/pump" class="list-group-item waves-effect">
                     <i class="fa fa-bars mr-3"></i>Pump
                 </a>
-                <a href="/views/lubricant" class="list-group-item waves-effect">
+                <a href="/views/tank" class="list-group-item waves-effect">
                     <i class="fa fa-bars mr-3"></i>Tank
                 </a>
-                <a href="/views/lubricant" class="list-group-item waves-effect">
+                <a href="/views/debtor" class="list-group-item waves-effect">
                     <i class="fa fa-bars mr-3"></i>Debtor
                 </a>
         </div>

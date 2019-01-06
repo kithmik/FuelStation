@@ -7,9 +7,10 @@ if (isset($_POST['submit'])){
 
     $where = "id = '$id'";
 
-    delete("tank", $where);
+    $fuel_data = delete("fuelprice", $where);
 
     if (isset($_SERVER['HTTP_REFERER'])){
         header("Location: ".$_SERVER['HTTP_REFERER']);
     }
 }
+

@@ -1,17 +1,14 @@
 <?php
-/*if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(!isset($_SESSION['user'])){
     header("Location: ".$_SERVER['DOCUMENT_ROOT']."/index.php");
     exit(0);
-}*/
+}
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($document_root."/controllers/deo/fuel/index.php");
 
-$update_path = $document_root."/controllers/deo/fuel/update.php";
-$delete_path = $document_root."/controllers/deo/fuel/delete.php";
-$create_path = $document_root."/controllers/deo/fuel/store.php";
+$create_path = "/controllers/deo/lubricantprice/store.php";
 
 $include_path = $document_root."/views/includes";
 
@@ -52,9 +49,9 @@ include_once($include_path."/navbar.php");
                         <select name="lubid">
                             <?php
 
-                            include "../../dbConnect/dbConnect.php";
+
                             $count=0;
-                            $conn=dbConnect();
+
 
                             $sql="SELECT LubricantId from Lubricant";
 

@@ -3,14 +3,14 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(!isset($_SESSION['user'])){
-    header("Location: /index.php");
+    header("Location: ".$_SERVER['DOCUMENT_ROOT']."/index.php");
     exit(0);
 }
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($document_root."/controllers/deo/fuel/index.php");
+require_once ($document_root."/controllers/deo/debtor/index.php");
 
-$update_path = "/controllers/deo/fuel/update.php";
-$delete_path = "/controllers/deo/fuel/delete.php";
+$update_path = "/controllers/deo/debtor/update.php";
+$delete_path = "/controllers/deo/debtor/delete.php";
 
 $include_path = $document_root."/views/includes";
 
@@ -19,7 +19,7 @@ $include_path = $document_root."/views/includes";
 <!doctype html>
 <html>
 <head>
-    <title>Fuel Management System</title>
+    <title>Debtor Register</title>
     <?php
     include_once($include_path."/styles.php");
     ?>
@@ -39,39 +39,39 @@ include_once($include_path."/navbar.php");
         <div class="col-md-7 pt-5">
             <div class="card">
                 <div class="card-header">
-                    Fuel Register
+                    Debtor Register
 
                 </div>
                 <div class="card-body">
 
                     <div class="row">
                         <div class="col">
-                            <a href="/views/fuel/sale/create.php" class="btn btn-success">
+                            <a href="/views/debtor/create.php" class="btn btn-success">
                                 Create New  <i class="fa fa-plus" aria-expanded="false"></i>
                             </a>
                         </div>
                     </div>
 
                     <div class="table responsive">
-                        <table id="fuel-data" class="table table-striped" cellspacing="0" width="100%">
+                        <table id="fuel-data" class="table table-striped datatable" cellspacing="0" width="100%">
 
                             <thead>
                             <tr>
-<!--                                <th>ID</th>-->
-                                <th>FuelID</th>
-                                <th>Fuel Type</th>
+
+
+                                <th>PumpId</th>
+                                <th>TankId</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($fuels as $fuel){
-                                $id = $fuel["id"];
+                            foreach ($pumps as $pump){
+                                $id = $pump["id"];
                                 echo "<tr>";
-//                                echo "<td>$id</td>";
-                                echo "<td>".$fuel["FuelId"]."</td>";
-                                echo "<td>".$fuel["FuelName"]."</td>";
 
+                                echo "<td>".$pump["PumpId"]."</td>";
+                                echo "<td>".$pump["TankId"]."</td>";
                                 echo "<td>";
                                 echo "<button class='btn btn-warning edit-modal-btn btn-sm' type='button' data-toggle='modal' data-target='#edit-modal' data-id='$id'>Edit</button>";
                                 echo "<button class='btn btn-danger btn-sm delete-modal-btn' type='button' data-toggle='modal' data-target='#delete-modal' data-id='$id'>Delete</button>";
@@ -95,7 +95,7 @@ include_once($include_path."/navbar.php");
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Edit Fuel Record</h4>
+                                <h4 class="modal-title">Edit Pumper Record</h4>
                             </div>
                             <div class="modal-body">
                                 <!--                            <div id="status-text"></div>
@@ -103,21 +103,17 @@ include_once($include_path."/navbar.php");
                                 <form action="<?php echo $update_path; ?>" method="post" class="form-horizontal" role="form" id="edit-form">
 
                                     <input type="hidden" id="edit_id" name="edit_id" value="">
-                                    <div class="form-group">
 
-                                        <label class="control-label col-sm-2" for="FuelId">Fuel ID:</label>
-                                        <div class="col-sm-4">
-
-                                            <input type="text" class="form-control" id="FuelId" name="FuelId" value="" placeholder="Fuel ID" required autofocus> </div>
-
-
-                                        <label class="control-label col-sm-2" for="FuelName">Fuel Type:</label>
-                                        <div class="col-sm-4">
-
-                                            <input type="text" class="form-control" id="FuelName" name="FuelName" value="" placeholder="Fuel Type" required autofocus> </div>
-
+                                    <div class="md-form">
+                                        <label for="PumpId" class="active">PumpId</label>
+                                        <input type="text" name="PumpId" id="PumpId" class="form-control active">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="md-form">
+                                        <label for="TankId">TankId</label>
+                                        <input type="text" name="TankId" id="TankId" class="form-control">
+                                    </div>
+
+                                    <div class="md-form">
                                         <input type="submit" class="btn btn-default" name="submit" id="submit-edit">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
@@ -136,7 +132,6 @@ include_once($include_path."/navbar.php");
                     </div>
                 </div>
 
-
                 <div id="delete-modal" class="modal" tabindex="-1" role="dialog">
                     <div class="modal-dialog">
 
@@ -144,7 +139,7 @@ include_once($include_path."/navbar.php");
                         <div class="modal-content">
                             <div class="modal-header">
 
-                                <h4 class="modal-title">Delete Fuel Record</h4>
+                                <h4 class="modal-title">Delete Pump Record</h4>
 
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
@@ -186,8 +181,7 @@ include_once($include_path."/navbar.php");
 
 
     <script>
-        var fuels = JSON.parse('<?php echo(json_encode($fuels)); ?>');
-
+        var pumps = JSON.parse('<?php echo(json_encode($pumps)); ?>');
         $(document).ready(function () {
 
             $(".edit-modal-btn").click(function (e) {
@@ -195,14 +189,15 @@ include_once($include_path."/navbar.php");
                 var id = $(this).attr("data-id");
                 $("#edit_id").attr("value", id);
 
-                var len = fuels.length;
+                var len = pumps.length;
                 console.log(len);
                 for (var i = 0; i < len; i++){
-                    var fuel = fuels[i];
-                    if (fuel.id == id){
-                        console.log(fuel);
-                        $.each(fuel, function (key, value) {
+                    var pump = pumps[i];
+                    if (pump.id == id){
+                        console.log(pump);
+                        $.each(pump, function (key, value) {
                             $("#"+key).attr("value", value);
+
                         });
                     }
 
@@ -231,6 +226,7 @@ include_once($include_path."/navbar.php");
             $(".delete-modal-btn").click(function (e) {
                 e.preventDefault();
                 var id = $(this).attr("data-id");
+                console.log(id);
                 $("#delete_id").attr("value", id);
                 $("#delete-modal").show();
             });
@@ -241,8 +237,6 @@ include_once($include_path."/navbar.php");
             });*/
 
         });
-
-
     </script>
 
 
@@ -253,29 +247,6 @@ include_once($include_path."/navbar.php");
     include_once ($include_path.'/footer.php');
     ?>
 
-    ?>
 
-    <script>
-        $(document).ready(function() {
-            $('#fuel-data').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                lengthChange: false,
-                buttons: [
-
-                    { extend: 'print', className: 'btn btn-outline-info m-1 p-1' },
-                    {
-                        extend: 'excelHtml5', className: 'btn btn-outline-info m-1 p-1'
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A3', className: 'btn btn-outline-info m-1 p-1'
-                    },
-                    { extend: 'colvis', className: 'btn btn-outline-info m-1 p-1' },
-                ]
-            });
-        });
-    </script>
 </body>
 </html>

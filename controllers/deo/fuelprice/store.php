@@ -7,25 +7,22 @@ if (isset($_POST['submit'])){
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $NIC=$_POST['nic'];
-        $PumperId=$_POST['pumperid'];
-        $FirstName=$_POST['firstname'];
-        $LastName=$_POST['lastname'];
-        $DOB=$_POST['dob'];
-        $Address=$_POST['address'];
-        $cno=$_POST['cno'];
-        $Basicsalary=$_POST['basicsalary'];
-        $Allowances=$_POST['allowances'];
+        $FuelId=$_POST['fuelid'];
+        $UnitPrice=$_POST['unitprice'];
+        $UpDate=$_POST['unitpriceddate'];
 
 
-        $sql="INSERT INTO Pumper(NIC,PumperId,FirstName,LastName,DOB,Address,TelephoneNo,BasicSalary,Allowances) VALUES ('$NIC','$PumperId,'$FirstName','$LastName','$DOB','$Address','$cno','$Basicsalary','Allowances')";
+
+        $sql="INSERT INTO FuelPrice(FuelId,UnitPrice,UnitPricedDate) VALUES ('$FuelId','$UnitPrice','$UpDate')";
+
+
 
 
         if ($conn->query($sql) === TRUE) {
 //            echo "<script>window.alert('Successfully added !');
 //    			window.location='pumpregdeo.php'</script>";
             $_SESSION['status'] = "Record was successfully inserted!";
-            header("Location: /views/pumper/");
+            header("Location: /views/fuelprice/");
 
 
         } else {

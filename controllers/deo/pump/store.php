@@ -5,7 +5,27 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 if (isset($_POST['submit'])){
     $id = $_POST["id"];
 
-    insert("pump", $_POST);
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        $PumpId=$_POST['pumpid'];
+        $FuelId=$_POST['fuelid'];
+        $TankId=$_POST['tankid'];
+
+
+        $sql="INSERT INTO Pump(PumpId,FuelId,TankId) VALUES ('$PumpId','$FuelId','$TankId')";
+
+
+        if ($conn->query($sql) === TRUE) {
+//            echo "<script>window.alert('Successfully added !');
+//    			window.location='pumpregdeo.php'</script>";
+            $_SESSION['status'] = "Record was successfully inserted!";
+            header("Location: /views/pump/");
+
+
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
 
 
 

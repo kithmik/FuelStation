@@ -6,7 +6,7 @@
     <hr class="my-4">
 
     <!-- Social icons -->
-    <div class="pb-4">
+    <!--<div class="pb-4">
         <a href="https://www.facebook.com/mdbootstrap" target="_blank">
             <i class="fa fa-facebook mr-3"></i>
         </a>
@@ -38,7 +38,7 @@
         <a href="http://codepen.io/mdbootstrap/" target="_blank">
             <i class="fa fa-codepen mr-3"></i>
         </a>
-    </div>
+    </div>-->
     <!-- Social icons -->
 
     <!--Copyright-->

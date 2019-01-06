@@ -42,3 +42,13 @@ if (isset($_SESSION['status'])){
     unset($_SESSION['status']);
 }
 ?>
+
+
+<script>
+    $(document).ready(function() {
+        $('.mdb-select').materialSelect();
+        $('.datepicker').pickadate({
+            editable: false
+        });
+    });
+</script>

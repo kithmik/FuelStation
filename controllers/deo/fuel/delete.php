@@ -3,9 +3,9 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 
 if (isset($_POST['submit'])){
-    $id = $_POST["id"];
+    $id = $_POST["delete_id"];
 
-    $where = ["id" => $id];
+    $where = "id = '$id'";
 
     $fuel_data = delete("fuel", $where);
 

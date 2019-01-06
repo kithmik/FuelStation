@@ -7,11 +7,11 @@ if(!isset($_SESSION['user'])){
     exit(0);
 }
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($document_root."/controllers/deo/fuel/index.php");
+require_once ($document_root."/controllers/deo/lubricant/index.php");
 
-$update_path = "/controllers/deo/fuel/update.php";
-$delete_path = "/controllers/deo/fuel/delete.php";
-$create_path = "/controllers/deo/fuel/store.php";
+$update_path = "/controllers/deo/lubricant/update.php";
+$delete_path = "/controllers/deo/lubricant/delete.php";
+$create_path = "/controllers/deo/lubricant/store.php";
 
 $include_path = $document_root."/views/includes";
 
@@ -19,7 +19,7 @@ $include_path = $document_root."/views/includes";
 <!doctype html>
 <html>
 <head>
-    <title>fuel Register</title>
+    <title>Lubricant price Register</title>
     <?php
     include_once($include_path."/styles.php");
     ?>
@@ -39,7 +39,7 @@ include_once($include_path."/navbar.php");
         <div class="col-md-7 pt-5">
             <div class="card">
                 <div class="card-header">
-                    Fuel Register
+                    Lubricant price Register
 
                 </div>
                 <div class="card-body">
@@ -51,16 +51,16 @@ include_once($include_path."/navbar.php");
 
 
                         <div class="md-form">
-                            <label for="fuelid">Fuel ID</label><br>
-                            <input class="form-control" type="text" id="fuelid" name="FuelId" required><br>
+                            <label for="lubid">Lubricant ID</label><br>
+                            <input class="form-control" type="text" id="lubid" name="lubid" required><br>
 
                         </div>
 
 
 
                         <div class="md-form">
-                            <label for="fueltype">Fuel Name</label><br>
-                            <input class="form-control" type="text" id="fueltype" name="fueltype" required><br>
+                            <label for="ltype">Lubricant Name</label><br>
+                            <input class="form-control" type="text" id="ltype" name="ltype" required><br>
 
                         </div>
 
