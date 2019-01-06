@@ -9,8 +9,6 @@ if(!isset($_SESSION['user'])){
 $document_root = $_SERVER['DOCUMENT_ROOT'];
 require_once ($document_root."/controllers/deo/lubricant/index.php");
 
-$update_path = "/controllers/deo/lubricant/update.php";
-$delete_path = "/controllers/deo/lubricant/delete.php";
 $create_path = "/controllers/deo/lubricant/store.php";
 
 $include_path = $document_root."/views/includes";

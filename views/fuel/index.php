@@ -255,27 +255,5 @@ include_once($include_path."/navbar.php");
 
     ?>
 
-    <script>
-        $(document).ready(function() {
-            $('#fuel-data').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                lengthChange: false,
-                buttons: [
-
-                    { extend: 'print', className: 'btn btn-outline-info m-1 p-1' },
-                    {
-                        extend: 'excelHtml5', className: 'btn btn-outline-info m-1 p-1'
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A3', className: 'btn btn-outline-info m-1 p-1'
-                    },
-                    { extend: 'colvis', className: 'btn btn-outline-info m-1 p-1' },
-                ]
-            });
-        });
-    </script>
 </body>
 </html>

@@ -19,7 +19,7 @@ $include_path = $document_root."/views/includes";
 <!doctype html>
 <html>
 <head>
-    <title>Pumper Register</title>
+    <title>Lubricantprice Register</title>
     <?php
     include_once($include_path."/styles.php");
     ?>
@@ -39,14 +39,14 @@ include_once($include_path."/navbar.php");
         <div class="col-md-7 pt-5">
             <div class="card">
                 <div class="card-header">
-                    Lubricant Register
+                    Lubricant price Register
 
                 </div>
                 <div class="card-body">
 
                     <div class="row">
                         <div class="col">
-                            <a href="/views/lubricant/create.php" class="btn btn-success">
+                            <a href="/views/lubricantprice/create.php" class="btn btn-success">
                                 Create New  <i class="fa fa-plus" aria-expanded="false"></i>
                             </a>
                         </div>
@@ -58,18 +58,22 @@ include_once($include_path."/navbar.php");
                             <thead>
                             <tr>
                                 <th>LubricantId</th>
-                                <th>LubricantName</th>
+                                <th>Unit Price</th>
+                                <th>UnitPriced Date</th>
+
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($lubricants as $lubricant){
-                                $id = $lubricant["id"];
+                            foreach ($lubricantprices as $lubricantprice){
+                                $id = $lubricantprice["id"];
                                 echo "<tr>";
 
-                                echo "<td>".$lubricant["LubricantId"]."</td>";
-                                echo "<td>".$lubricant["LubricantName"]."</td>";
+                                echo "<td>".$lubricantprice["LubricantId"]."</td>";
+                                echo "<td>".$lubricantprice["UnitPrice"]."</td>";
+                                echo "<td>".$lubricantprice["UnitPricedDate"]."</td>";
+
 
                                 echo "<td>";
                                 echo "<button class='btn btn-warning edit-modal-btn btn-sm' type='button' data-toggle='modal' data-target='#edit-modal' data-id='$id'>Edit</button>";
@@ -94,7 +98,7 @@ include_once($include_path."/navbar.php");
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Edit Pumper Record</h4>
+                                <h4 class="modal-title">Edit Lubricant price Record</h4>
                             </div>
                             <div class="modal-body">
                                 <!--                            <div id="status-text"></div>
@@ -105,11 +109,15 @@ include_once($include_path."/navbar.php");
 
                                     <div class="md-form">
                                         <label for="LubricantId">LubricantId</label>
-                                        <input type="text" name="LubricantId" id="LubricantId" class="form-control">
+                                        <input type="text" name="LubricantId" id="LubricantId" value="" class="form-control">
                                     </div>
                                     <div class="md-form">
-                                        <label for="LubricantName">LubricantName</label>
-                                        <input type="text" name="LubricantName" id="LubricantName" class="form-control">
+                                        <label for="UnitPrice">UnitPrice</label>
+                                        <input type="text" name="UnitPrice" id="UnitPrice" class="form-control">
+                                    </div>
+                                    <div class="md-form">
+                                        <label for="UnitPricedDate">UnitPricedDate</label>
+                                        <input type="text" name="UnitPricedDate" id="UnitPricedDate" class="form-control">
                                     </div>
 
                                     <div class="md-form">
@@ -180,7 +188,7 @@ include_once($include_path."/navbar.php");
 
 
     <script>
-        var lubricants = JSON.parse('<?php echo(json_encode($lubricants)); ?>');
+        var lubricantprices = JSON.parse('<?php echo(json_encode($lubricantprices)); ?>');
         $(document).ready(function () {
 
             $(".edit-modal-btn").click(function (e) {
@@ -188,13 +196,13 @@ include_once($include_path."/navbar.php");
                 var id = $(this).attr("data-id");
                 $("#edit_id").attr("value", id);
 
-                var len = lubricants.length;
+                var len = lubricantprices.length;
 
                 for (var i = 0; i < len; i++){
-                    var lubricant = lubricants[i];
-                    if (lubricant.id == id){
-                        console.log(lubricant);
-                        $.each(lubricant, function (key, value) {
+                    var lubricantprice = lubricantprices[i];
+                    if (lubricantprice.id == id){
+                        console.log(lubricantprice);
+                        $.each(lubricantprice, function (key, value) {
                             $("#"+key).attr("value", value);
 
                         });
