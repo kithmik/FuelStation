@@ -20,7 +20,8 @@ if (isset($_POST['submit'])){
         $lubricantsale_id = insert("lubricantsale", $_POST);
 
         if (isset($_SERVER['HTTP_REFERER'])){
-            header("Location: ".$_SERVER['HTTP_REFERER']);
+            header("Location: /views/lubricant/sale");
+//            header("Location: ".$_SERVER['HTTP_REFERER']);
         }
 
     }

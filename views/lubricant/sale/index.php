@@ -52,7 +52,7 @@ include_once($include_path."/navbar.php");
                     </div>
 
                     <div class="table responsive">
-                        <table id="lubricantsale-data" class="table table-striped" cellspacing="0" width="100%">
+                        <table id="lubricantsale-data" class="table table-striped data_table" cellspacing="0" width="100%">
 
                             <thead>
                             <tr>
@@ -232,7 +232,7 @@ include_once($include_path."/navbar.php");
 
     <script>
         $(document).ready(function() {
-            $('#fuel-data').DataTable({
+            $('.data_table').DataTable({
                 responsive: true,
                 dom: 'Bfrtip',
                 lengthChange: false,

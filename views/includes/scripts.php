@@ -29,3 +29,16 @@
 </script>
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
 
+<?php
+if (isset($_SESSION['status'])){
+    ?>
+    <script>
+        $(document).ready(function () {
+            console.log("<?php echo $_SESSION['status']; ?>");
+            toastr["success"]("<?php echo $_SESSION['status']; ?>");
+        });
+    </script>
+<?php
+    unset($_SESSION['status']);
+}
+?>
