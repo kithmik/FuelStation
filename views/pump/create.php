@@ -7,13 +7,13 @@ if(!isset($_SESSION['user'])){
     exit(0);
 }*/
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($document_root."/controllers/deo/fuel/index.php");
+require_once ($document_root."/controllers/deo/pump/index.php");
 
-$update_path = $document_root."/controllers/deo/fuel/update.php";
-$delete_path = $document_root."/controllers/deo/fuel/delete.php";
-$create_path = $document_root."/controllers/deo/fuel/store.php";
+$update_path = "/controllers/deo/fuel/update.php";
+$delete_path = "/controllers/deo/fuel/delete.php";
+$create_path = "/controllers/deo/fuel/store.php";
 
-$include_path = $document_root."/views/includes";
+$include_path = "/views/includes";
 
 ?>
 <!doctype html>

@@ -61,8 +61,15 @@ include_once($include_path."/navbar.php");
                                 <th>PumpId</th>
                                 <th>PumperId</th>
                                 <th>Date</th>
-                                <th>OMReading</th>
-                                <th>CMReading</th>
+                                <th>Opening Meter Reading</th>
+                                <th>Closing MReading</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Total Amount (Liters)</th>
+                                <th>Cash Sales</th>
+                                <th>Debtor Sales</th>
+                                <th>Card Sales</th>
+
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -77,6 +84,12 @@ include_once($include_path."/navbar.php");
                                 echo "<td>".$fuelsale["Date"]."</td>";
                                 echo "<td>".$fuelsale["OMReading"]."</td>";
                                 echo "<td>".$fuelsale["CMReading"]."</td>";
+                                echo "<td>".$fuelsale["Stime"]."</td>";
+                                echo "<td>".$fuelsale["Etime"]."</td>";
+                                echo "<td>".$fuelsale["TotalAmount"]."</td>";
+                                echo "<td>".$fuelsale["Cashsale"]."</td>";
+                                echo "<td>".$fuelsale["DebtorSales"]."</td>";
+                                echo "<td>".$fuelsale["CardSales"]."</td>";
                                 echo "<td>";
                                 echo "<button class='btn btn-warning edit-modal-btn btn-sm' type='button' data-toggle='modal' data-target='#edit-modal' data-id='$id'>Edit</button>";
                                 echo "<button class='btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#delete-modal' data-id='$id'>Delete</button>";
