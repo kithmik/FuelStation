@@ -5,7 +5,9 @@ if (isset($_POST['submit'])){
     $date = $_POST['Date'];
     $no_of_items = $_POST['NoOfItems'];
 
-    $price_sql = "SELECT * FROM lubricantprice WHERE `LubricantId` = '$lubricant_id' AND `Date` >= '$date' ORDER BY `Date` LIMIT 1";
+    $price_sql = "SELECT * FROM lubricantprice WHERE `LubricantId` = '$lubricant_id' AND `UnitPricedDate` >= '$date' ORDER BY `UnitPricedDate` LIMIT 1";
+    /*echo $price_sql;
+    exit(0);*/
     $price_data = customGetData($price_sql);
 
     if (count($price_data) == 1){
@@ -25,5 +27,29 @@ if (isset($_POST['submit'])){
 
 
 }
+
+//$LubricantId=$_POST['LubricantId'];
+//$Date=$_POST['Date'];
+//$NoOfItems=$_POST['NoOfItems'];
+//$Cashsale=$_POST['Cashsale'];
+//$Debtorsale=$_POST['Debtorsale'];
+//$Cardsale=$_POST['Cardsale'];
+//
+//
+//
+//
+//$sql="INSERT INTO lubricantsale(LubricantId,Date,NoOfItems,Cashsale,Debtorsale,Debtorsale,Cardsale) VALUES ('$LubricantId','$Date','$NoOfItems','$Cashsale','$Debtorsale','$Cardsale')";
+//
+//
+//if ($conn->query($sql) === TRUE) {
+//    echo "<script>window.alert('Successfully added !');
+//    			window.location='view.php'</script>";
+//
+//} else {
+//    echo "Error: " . $sql . "<br>" . $conn->error;
+//}
+//$conn -> close();
+//
+//}
 
 ?>

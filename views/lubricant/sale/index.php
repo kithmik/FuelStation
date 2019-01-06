@@ -1,16 +1,17 @@
 <?php
-/*if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(!isset($_SESSION['user'])){
-    header("Location: ".$_SERVER['DOCUMENT_ROOT']."/index.php");
+    header("Location: /index.php");
     exit(0);
-}*/
+}
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($document_root."/controllers/deo/fuel/sale/index.php");
+require_once ($document_root."/controllers/deo/lubricant/sale/index.php");
 
-$update_path = $document_root."/controllers/deo/fuel/sale/update.php";
-$delete_path = $document_root."/controllers/deo/fuel/sale/delete.php";
+$update_path = "/controllers/deo/fuel/update.php";
+$delete_path = "/controllers/deo/fuel/delete.php";
+
 $include_path = $document_root."/views/includes";
 
 ?>
@@ -18,7 +19,7 @@ $include_path = $document_root."/views/includes";
 <!doctype html>
 <html>
 <head>
-    <title>Fuel Sales</title>
+    <title>Lubricant Sales</title>
     <?php
     include_once($include_path."/styles.php");
     ?>
@@ -38,45 +39,45 @@ include_once($include_path."/navbar.php");
         <div class="col-md-7 pt-5">
             <div class="card">
                 <div class="card-header">
-                    Fuel Sales
-
+                    Lubricant Sales
                 </div>
                 <div class="card-body">
 
                     <div class="row">
                         <div class="col">
-                            <a href="/views/fuel/sale/create.php" class="btn btn-success">
+                            <a href="/views/lubricant/sale/create.php" class="btn btn-success">
                                 Create New  <i class="fa fa-plus" aria-expanded="false"></i>
                             </a>
                         </div>
                     </div>
 
-
                     <div class="table responsive">
-                        <table id="fuel-data" class="table table-striped" cellspacing="0" width="100%">
+                        <table id="lubricantsale-data" class="table table-striped" cellspacing="0" width="100%">
 
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>PumpId</th>
-                                <th>PumperId</th>
-                                <th>Date</th>
-                                <th>OMReading</th>
-                                <th>CMReading</th>
+                                <th>Lubricant ID</th>
+                                <th>No Of Items</th>
+                                <th>Total Amount(Rs)</th>
+                                <th>Cash Sales</th>
+                                <th>Debtor Sales</th>
+                                <th>Card Sales</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($fuelsales as $row => $fuelsale){
-                                $id = $fuelsale["id"];
+                            foreach ($lubricantsales as $lubricantsale){
+                                $id = $lubricantsale["id"];
                                 echo "<tr>";
                                 echo "<td>$id</td>";
-                                echo "<td>".$fuelsale["PumpId"]."</td>";
-                                echo "<td>".$fuelsale["PumperId"]."</td>";
-                                echo "<td>".$fuelsale["Date"]."</td>";
-                                echo "<td>".$fuelsale["OMReading"]."</td>";
-                                echo "<td>".$fuelsale["CMReading"]."</td>";
+                                echo "<td>".$lubricantsale["LubricantId"]."</td>";
+                                echo "<td>".$lubricantsale["NoOfItems"]."</td>";
+                                echo "<td>".$lubricantsale["TotalAmount"]."</td>";
+                                echo "<td>".$lubricantsale["Cashsale"]."</td>";
+                                echo "<td>".$lubricantsale["Debtorsale"]."</td>";
+                                echo "<td>".$lubricantsale["Cardsale"]."</td>";
                                 echo "<td>";
                                 echo "<button class='btn btn-warning edit-modal-btn btn-sm' type='button' data-toggle='modal' data-target='#edit-modal' data-id='$id'>Edit</button>";
                                 echo "<button class='btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#delete-modal' data-id='$id'>Delete</button>";
@@ -100,7 +101,7 @@ include_once($include_path."/navbar.php");
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Edit Fuel Record</h4>
+                                <h4 class="modal-title">Edit Lubricant Sales Record</h4>
                             </div>
                             <div class="modal-body">
                                 <!--                            <div id="status-text"></div>
@@ -110,26 +111,36 @@ include_once($include_path."/navbar.php");
                                     <input type="hidden" id="edit_id" name="edit_id" value="">
                                     <div class="form-group">
 
-                                        <label class="control-label col-sm-2" for="FuelId">Fuel ID:</label>
+                                        <label class="control-label col-sm-2" for="LubricantId">Lubricant ID:</label>
                                         <div class="col-sm-4">
 
-                                            <input type="text" class="form-control" id="FuelId" name="FuelId" value="" placeholder="Fuel ID" required autofocus> </div>
+                                            <input type="text" class="form-control" id="LubricantId" name="LubricantId" value="" placeholder="Fuel ID" required autofocus> </div>
 
 
-                                        <label class="control-label col-sm-2" for="FuelName">Fuel Type:</label>
+                                        <label class="control-label col-sm-2" for="NoOfItems">No Of Items:</label>
                                         <div class="col-sm-4">
 
-                                            <input type="text" class="form-control" id="FuelName" name="FuelName" value="" placeholder="Fuel Type" required autofocus> </div>
+                                            <input type="text" class="form-control" id="NoOfItems" name="NoOfItems" value="" placeholder="Fuel Type" required autofocus> </div>
 
-                                        <label class="control-label col-sm-2" for="UnitPrice">Unit Price:</label>
+                                        <label class="control-label col-sm-2" for="TotalAmount">Total Amount(Rs):</label>
                                         <div class="col-sm-4">
 
-                                            <input type="text" class="form-control" id="UnitPrice" name="UnitPrice" value="" placeholder="Unit Price" required> </div>
+                                            <input type="text" class="form-control" id="TotalAmount" name="TotalAmount" value="" placeholder="Unit Price" required> </div>
 
-                                        <label class="control-label col-sm-2" for="UnitPricedDate">Unit Priced Date:</label>
+                                        <label class="control-label col-sm-2" for="Cashsales">Cash Sales:</label>
                                         <div class="col-sm-4">
 
-                                            <input type="text" class="form-control" id="UnitPricedDate" name="UnitPricedDate" value="" placeholder="Unit Priced Date" required autofocus> </div>
+                                            <input type="text" class="form-control" id="Cashsales" name="Cashsales" value="" placeholder="Unit Priced Date" required autofocus> </div>
+
+                                        <label class="control-label col-sm-2" for="Debtorsales">Debtor Sales:</label>
+                                        <div class="col-sm-4">
+
+                                            <input type="text" class="form-control" id="Debtorsales" name="Debtorsales" value="" placeholder="Unit Priced Date" required autofocus> </div>
+
+                                        <label class="control-label col-sm-2" for="Cardsales">Card Sales:</label>
+                                        <div class="col-sm-4">
+
+                                            <input type="text" class="form-control" id="Cardsales" name="Cardsales" value="" placeholder="Unit Priced Date" required autofocus> </div>
 
                                     </div>
                                     <div class="form-group">
@@ -141,7 +152,7 @@ include_once($include_path."/navbar.php");
                                 </form>
 
 
-                                <div id="fuel-data">
+                                <div id="lubricantsale-data">
 
                                 </div>
                             </div>
@@ -162,24 +173,25 @@ include_once($include_path."/navbar.php");
 
 
     <script>
-        var fuels = JSON.parse('<?php echo(json_encode($fuels)); ?>');
+        var lubricantsales = JSON.parse('<?php echo(json_encode($lubricantsales)); ?>');
         $(document).ready(function () {
 
             $(".edit-modal-btn").click(function (e) {
                 // e.preventDefault();
                 var id = $(this).attr("data-id");
                 $("#edit_id").attr("value", id);
-                $.each(fuels[id], function (key, value) {
+
+                $.each(lubricantsales[id], function (key, value) {
                     if (key === "id"){
                         $("#FuelId").attr("value", value);
                     }
-                    else if(key === "FuelName"){
-                        $("#Name").attr("value", value);
+                    else if(key === "LubricantId"){
+                        $("#FuelName").attr("value", value);
                     }
-                    else if(key === "UnitPrice"){
+                    else if(key === "Date"){
                         $("#UnitPrice").attr("value", value);
                     }
-                    else if(key === "UnitPricedDate"){
+                    else if(key === "NoOfItems"){
                         $("#UnitPricedDate").attr("value", value);
                     }
 

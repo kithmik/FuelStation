@@ -5,6 +5,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 if (isset($_POST['submit'])){
 
 
+
+
     $totalsales = $_POST['CMReading'] - $_POST['OMReading'];
     $_POST["TotalAmount"] = $totalsales;
 /*    echo " ts: $totalsales, cm: ".$_POST['CMReading'].", ";
@@ -17,6 +19,11 @@ if (isset($_POST['submit'])){
         header("Location: ".$_SERVER['HTTP_REFERER']);
     }
 }
+
+
+
+
+?>
 
 //
 //if (isset($_POST['submit'])){
