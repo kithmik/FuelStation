@@ -9,9 +9,9 @@ if(!isset($_SESSION['user'])){
 $document_root = $_SERVER['DOCUMENT_ROOT'];
 require_once ($document_root."/controllers/deo/fuel/index.php");
 
-$update_path = $document_root."/controllers/deo/fuel/update.php";
-$delete_path = $document_root."/controllers/deo/fuel/delete.php";
-$create_path = $document_root."/controllers/deo/fuel/store.php";
+$update_path = "/controllers/deo/fuel/update.php";
+$delete_path = "/controllers/deo/fuel/delete.php";
+$create_path = "/controllers/deo/fuel/store.php";
 
 $include_path = $document_root."/views/includes";
 
@@ -52,7 +52,7 @@ include_once($include_path."/navbar.php");
 
                         <div class="md-form">
                             <label for="fuelid">Fuel ID</label><br>
-                            <input class="form-control" type="text" id="fuelid" name="fuelid" required><br>
+                            <input class="form-control" type="text" id="fuelid" name="FuelId" required><br>
 
                         </div>
 
@@ -64,10 +64,28 @@ include_once($include_path."/navbar.php");
 
                         </div>
 
+                        <div class="md-form">
+                            <label for="fuelid">Unit Price</label><br>
+                            <input class="form-control" type="text" id="fuelid" name="UnitPrice" required><br>
+
+                        </div>
 
 
 
-                        <input type="submit" value="Submit" class="form-control btn btn-primary">
+                        <div class="md-form">
+                            <label for="fueltype">Unit Price Date</label><br>
+                            <input class="form-control" type="date" id="fueltype" name="UnitPricedDate" required><br>
+
+                        </div>
+
+
+
+                        <div class="md-form">
+                            <input type="submit" value="Submit" class="form-control btn btn-primary">
+                        </div>
+
+
+
                     </form>
 
 

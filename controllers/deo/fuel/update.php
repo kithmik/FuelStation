@@ -3,15 +3,18 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 
 if (isset($_POST['submit'])){
-    $id = $_POST["FuelId"];
+    $id = $_POST["edit_id"];
+    $fuelId = $_POST["FuelId"];
 
-    $isFuelUpdateSuccessful = update("fuel", $_POST, $id);
+    $where = ["id" => $id];
+//    print_r($_POST);
+//    exit(0);
+
+    $isFuelUpdateSuccessful = update("fuel", $_POST, $where);
     if ($isFuelUpdateSuccessful == true){
-        $where = ["FuelId" => $id];
+        $where = ["FuelId" => $fuelId];
         $isFuelPriceUpdateSuccessful = update("fuelprice", $_POST, $where);
     }
-
-    print_r($_POST);
 
     if (isset($_SERVER['HTTP_REFERER'])){
      header("Location: ".$_SERVER['HTTP_REFERER']);
