@@ -52,15 +52,14 @@ include_once($include_path."/navbar.php");
                         </div>
                     </div>
 
-                    <div class="table responsive">
-                        <table class="table table-striped datatable" cellspacing="0" width="100%">
+                    <div class="table ">
+                        <table class="table table-striped datatable" cellspacing="0" >
 
                             <thead>
                             <tr>
                                 <th>LubricantId</th>
                                 <th>Unit Price</th>
                                 <th>UnitPriced Date</th>
-
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -101,23 +100,22 @@ include_once($include_path."/navbar.php");
                                 <h4 class="modal-title">Edit Lubricant price Record</h4>
                             </div>
                             <div class="modal-body">
-                                <!--                            <div id="status-text"></div>
-                                -->
+
                                 <form action="<?php echo $update_path; ?>" method="post" class="form-horizontal" role="form" id="edit-form">
 
                                     <input type="hidden" id="edit_id" name="edit_id" value="">
 
                                     <div class="md-form">
-                                        <label for="LubricantId">LubricantId</label>
-                                        <input type="text" name="LubricantId" id="LubricantId" value="" class="form-control">
+                                        <label for="LubricantId">Lubricant Id</label>
+                                        <input type="text" name="LubricantId" id="LubricantId" value=" " class="form-control" required>
                                     </div>
                                     <div class="md-form">
-                                        <label for="UnitPrice">UnitPrice</label>
-                                        <input type="text" name="UnitPrice" id="UnitPrice" class="form-control">
+                                        <label for="UnitPrice">Unit Price</label>
+                                        <input type="text" name="UnitPrice" id="UnitPrice" value=" " class="form-control" required>
                                     </div>
                                     <div class="md-form">
-                                        <label for="UnitPricedDate">UnitPricedDate</label>
-                                        <input type="text" name="UnitPricedDate" id="UnitPricedDate" class="form-control">
+                                        <label for="UnitPricedDate">Unit Priced Date</label>
+                                        <input type="text" name="UnitPricedDate" id="UnitPricedDate" value=" " class="form-control" required>
                                     </div>
 
                                     <div class="md-form">
@@ -151,19 +149,19 @@ include_once($include_path."/navbar.php");
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             <div class="modal-body">
-                                <!--                            <div id="status-text"></div>
-                                -->
-                                Are you sure you want to delete this?
-                                <form action="<?php echo $delete_path; ?>" method="post" class="form-horizontal" role="form" id="delete-form">
 
-                                    <input type="hidden" id="delete_id" name="delete_id" value="">
-                                    <div class="form-group pull-right">
-                                        <input type="submit"  class="btn btn-default btn-sm" name="submit" id="submit-delete">
-                                        <button type="button" class="btn btn-default btn-sm close" data-dismiss="modal">Close</button>
-                                    </div>
+                                     Are you sure you want to delete this?
+
+                                   <form action="<?php echo $delete_path; ?>" method="post" class="form-horizontal" role="form" id="delete-form">
+
+                                           <input type="hidden" id="delete_id" name="delete_id" value="">
+                                           <div class="form-group pull-right">
+                                               <input type="submit"  class="btn btn-default btn-sm" name="submit" id="submit-delete">
+                                               <button type="button" class="btn btn-default btn-sm close" data-dismiss="modal">Close</button>
+                                           </div>
 
 
-                                </form>
+                                    </form>
 
 
                                 <div id="fuel-data">
@@ -192,7 +190,7 @@ include_once($include_path."/navbar.php");
         $(document).ready(function () {
 
             $(".edit-modal-btn").click(function (e) {
-                // e.preventDefault();
+
                 var id = $(this).attr("data-id");
                 $("#edit_id").attr("value", id);
 
@@ -213,22 +211,6 @@ include_once($include_path."/navbar.php");
                 $("#edit-modal").show();
             });
 
-            /*$("#submit-edit").click(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: "update.php",
-                    data: $("#edit-form").serializeArray(),
-                    method: "post",
-                    success: function (data) {
-                        console.log("data: "+data);
-                        $("#status-text").html("Server sent: "+data);
-                    },
-                    error: function (err) {
-                        $("#status-text").html("An error occured: "+err);
-                    }
-
-                });
-            });*/
 
             $(".delete-modal-btn").click(function (e) {
                 e.preventDefault();
@@ -238,14 +220,9 @@ include_once($include_path."/navbar.php");
                 $("#delete-modal").show();
             });
 
-            /*$(".close").click(function (e) {
-                e.preventDefault();
-                $('.modal').hide();
-            });*/
 
         });
     </script>
-
 
 
 

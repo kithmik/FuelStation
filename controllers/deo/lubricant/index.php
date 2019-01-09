@@ -2,6 +2,10 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 
-$lubricants = getData('lubricant');
+/**
+ * Get all the data from the lubricant table to an associative array
+ */
+
+    $lubricants = getData('lubricant');
 
 ?>

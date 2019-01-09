@@ -2,12 +2,10 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 
-$fuels = getData("fuel");
-/*$fuel_price = getData("fuelprice");*/
+/**
+ * Get all the data from the fuel table to an associative array
+ */
+   $fuels = getData("fuel");
 
-/*$sql = "SELECT * FROM fuel LEFT JOIN fuelprice ON fuel.FuelId = fuelprice.FuelId";
-/*echo $sql;
-exit(0);*/
-//$fuels = customGetData($sql);
 
 ?>

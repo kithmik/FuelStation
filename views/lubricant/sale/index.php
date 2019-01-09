@@ -9,8 +9,8 @@ if(!isset($_SESSION['user'])){
 $document_root = $_SERVER['DOCUMENT_ROOT'];
 require_once ($document_root."/controllers/deo/lubricant/sale/index.php");
 
-$update_path = "/controllers/deo/fuel/update.php";
-$delete_path = "/controllers/deo/fuel/delete.php";
+$update_path = "/controllers/deo/lubricant/sale/update.php";
+$delete_path = "/controllers/deo/lubricant/sale/delete.php";
 
 $include_path = $document_root."/views/includes";
 
@@ -58,6 +58,7 @@ include_once($include_path."/navbar.php");
                             <tr>
                                 <th>ID</th>
                                 <th>Lubricant ID</th>
+                                <th>Date</th>
                                 <th>No Of Items</th>
                                 <th>Total Amount(Rs)</th>
                                 <th>Cash Sales</th>
@@ -73,6 +74,7 @@ include_once($include_path."/navbar.php");
                                 echo "<tr>";
                                 echo "<td>$id</td>";
                                 echo "<td>".$lubricantsale["LubricantId"]."</td>";
+                                echo "<td>".$lubricantsale["Date"]."</td>";
                                 echo "<td>".$lubricantsale["NoOfItems"]."</td>";
                                 echo "<td>".$lubricantsale["TotalAmount"]."</td>";
                                 echo "<td>".$lubricantsale["Cashsale"]."</td>";
@@ -104,43 +106,48 @@ include_once($include_path."/navbar.php");
                                 <h4 class="modal-title">Edit Lubricant Sales Record</h4>
                             </div>
                             <div class="modal-body">
-                                <!--                            <div id="status-text"></div>
-                                -->
+
                                 <form action="<?php echo $update_path; ?>" method="post" class="form-horizontal" role="form" id="edit-form">
 
                                     <input type="hidden" id="edit_id" name="edit_id" value="">
                                     <div class="form-group">
 
-                                        <label class="control-label col-sm-2" for="LubricantId">Lubricant ID:</label>
-                                        <div class="col-sm-4">
+                                        <label class="control-label col-sm-12" for="LubricantId">Lubricant ID:</label>
+                                        <div class="col-md-12">
 
                                             <input type="text" class="form-control" id="LubricantId" name="LubricantId" value="" placeholder="Fuel ID" required autofocus> </div>
 
+                                        <label class="control-label col-sm-12" for="Date">Date:</label>
+                                        <div class="col-md-12">
 
-                                        <label class="control-label col-sm-2" for="NoOfItems">No Of Items:</label>
-                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="Date" name="Date" value="" placeholder="Fuel ID" required autofocus> </div>
+
+
+
+                                        <label class="control-label col-sm-12" for="NoOfItems">No Of Items:</label>
+                                        <div class="col-md-12">
 
                                             <input type="text" class="form-control" id="NoOfItems" name="NoOfItems" value="" placeholder="Fuel Type" required autofocus> </div>
 
-                                        <label class="control-label col-sm-2" for="TotalAmount">Total Amount(Rs):</label>
-                                        <div class="col-sm-4">
+                                        <label class="control-label col-sm-12" for="TotalAmount">Total Amount(Rs):</label>
+                                        <div class="col-md-12">
 
                                             <input type="text" class="form-control" id="TotalAmount" name="TotalAmount" value="" placeholder="Unit Price" required> </div>
 
-                                        <label class="control-label col-sm-2" for="Cashsales">Cash Sales:</label>
-                                        <div class="col-sm-4">
+                                        <label class="control-label col-sm-12" for="Cashsale">Cash Sales:</label>
+                                        <div class="col-md-12">
 
-                                            <input type="text" class="form-control" id="Cashsales" name="Cashsales" value="" placeholder="Unit Priced Date" required autofocus> </div>
+                                            <input type="text" class="form-control" id="Cashsale" name="Cashsale" value="" placeholder="Unit Priced Date" required autofocus> </div>
 
-                                        <label class="control-label col-sm-2" for="Debtorsales">Debtor Sales:</label>
-                                        <div class="col-sm-4">
+                                        <label class="control-label col-sm-12" for="Debtorsale">Debtor Sales:</label>
+                                        <div class="col-md-12">
 
-                                            <input type="text" class="form-control" id="Debtorsales" name="Debtorsales" value="" placeholder="Unit Priced Date" required autofocus> </div>
+                                            <input type="text" class="form-control" id="Debtorsale" name="Debtorsale" value="" placeholder="Unit Priced Date" required autofocus> </div>
 
-                                        <label class="control-label col-sm-2" for="Cardsales">Card Sales:</label>
-                                        <div class="col-sm-4">
+                                        <label class="control-label col-sm-12" for="Cardsale">Card Sales:</label>
+                                        <div class="col-md-12">
 
-                                            <input type="text" class="form-control" id="Cardsales" name="Cardsales" value="" placeholder="Unit Priced Date" required autofocus> </div>
+                                            <input type="text" class="form-control" id="Cardsale" name="Cardsale" value="" placeholder="Unit Priced Date" required autofocus> </div>
 
                                     </div>
                                     <div class="form-group">
@@ -181,41 +188,24 @@ include_once($include_path."/navbar.php");
                 var id = $(this).attr("data-id");
                 $("#edit_id").attr("value", id);
 
-                $.each(lubricantsales[id], function (key, value) {
-                    if (key === "id"){
-                        $("#FuelId").attr("value", value);
-                    }
-                    else if(key === "LubricantId"){
-                        $("#FuelName").attr("value", value);
-                    }
-                    else if(key === "Date"){
-                        $("#UnitPrice").attr("value", value);
-                    }
-                    else if(key === "NoOfItems"){
-                        $("#UnitPricedDate").attr("value", value);
+                var len = lubricantsales.length;
+
+                for (var i = 0; i < len; i++){
+                    var lubricantsale = lubricantsales[i];
+                    if (lubricantsale.id == id){
+                        console.log(lubricantsale);
+                        $.each(lubricantsale, function (key, value) {
+                            $("#"+key).attr("value", value);
+
+                        });
                     }
 
-                });
+                }
+
                 $("#edit-modal").show();
-                console.log(id);
             });
 
-            /*$("#submit-edit").click(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: "update.php",
-                    data: $("#edit-form").serializeArray(),
-                    method: "post",
-                    success: function (data) {
-                        console.log("data: "+data);
-                        $("#status-text").html("Server sent: "+data);
-                    },
-                    error: function (err) {
-                        $("#status-text").html("An error occured: "+err);
-                    }
 
-                });
-            });*/
 
         });
     </script>

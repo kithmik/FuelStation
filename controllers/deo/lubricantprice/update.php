@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 if (isset($_POST['submit'])){
 
     $id=$_POST['edit_id'];
-    $where=['id' => $id];
+    $where = "id = '$id'";
 
     $isUpdateSuccessful = update("lubricantprice", $_POST, $where);
 
@@ -14,4 +14,5 @@ if (isset($_POST['submit'])){
         header("Location: ".$_SERVER['HTTP_REFERER']);
     }
 }
+?>
 

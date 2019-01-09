@@ -66,7 +66,7 @@ include_once($include_path."/navbar.php");
 
 
                         <div class="md-form">
-                            <input type="submit" value="Submit" class="form-control btn btn-primary">
+                            <input type="submit" name="submit" value="Submit" class="form-control btn btn-primary">
                         </div>
 
 

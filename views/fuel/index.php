@@ -46,7 +46,7 @@ include_once($include_path."/navbar.php");
 
                     <div class="row">
                         <div class="col">
-                            <a href="/views/fuel/sale/create.php" class="btn btn-success">
+                            <a href="/views/fuel/create.php" class="btn btn-success">
                                 Create New  <i class="fa fa-plus" aria-expanded="false"></i>
                             </a>
                         </div>
@@ -105,14 +105,14 @@ include_once($include_path."/navbar.php");
                                     <input type="hidden" id="edit_id" name="edit_id" value="">
                                     <div class="form-group">
 
-                                        <label class="control-label col-sm-2" for="FuelId">Fuel ID:</label>
-                                        <div class="col-sm-4">
+                                        <label class="control-label col-sm-12" for="FuelId">Fuel ID:</label>
+                                        <div class="col-sm-12">
 
                                             <input type="text" class="form-control" id="FuelId" name="FuelId" value="" placeholder="Fuel ID" required autofocus> </div>
 
 
-                                        <label class="control-label col-sm-2" for="FuelName">Fuel Type:</label>
-                                        <div class="col-sm-4">
+                                        <label class="control-label col-sm-12" for="FuelName">Fuel Type:</label>
+                                        <div class="col-sm-12">
 
                                             <input type="text" class="form-control" id="FuelName" name="FuelName" value="" placeholder="Fuel Type" required autofocus> </div>
 

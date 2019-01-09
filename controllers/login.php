@@ -12,8 +12,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 
 if(isset($_POST['login']))
 {
-    // print_r($_POST);
-    // exit(0);
 
 
     $EmpId = $_POST['NIC'];

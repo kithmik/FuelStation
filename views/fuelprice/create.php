@@ -7,11 +7,11 @@ if(!isset($_SESSION['user'])){
     exit(0);
 }
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($document_root."/controllers/deo/fuel/index.php");
+require_once ($document_root."/controllers/deo/fuelprice/index.php");
 
-$update_path = "/controllers/deo/fuel/update.php";
-$delete_path = "/controllers/deo/fuel/delete.php";
-$create_path = "/controllers/deo/fuel/store.php";
+$update_path = "/controllers/deo/fuelprice/update.php";
+$delete_path = "/controllers/deo/fuelprice/delete.php";
+$create_path = "/controllers/deo/fuelprice/store.php";
 
 $include_path = $document_root."/views/includes";
 
@@ -19,7 +19,7 @@ $include_path = $document_root."/views/includes";
 <!doctype html>
 <html>
 <head>
-    <title>fuel price</title>
+    <title>fuel price register</title>
     <?php
     include_once($include_path."/styles.php");
     ?>
@@ -46,30 +46,12 @@ include_once($include_path."/navbar.php");
 
                     <form action="<?php echo $create_path; ?>" method="post">
 
-                        <label for="fuelid">Fuel ID</label><br>
-                        <select name="fuelid" id="fuelid" class="mdb-select md-form">
-                            <?php
 
+                        <div class="md-form">
+                            <label for="fuelid">Fuel ID</label><br>
+                            <input class="form-control" type="text" id="fuelid" name="fuelid" required><br>
 
-                            $count=0;
-
-
-                            $sql="SELECT FuelId from Fuel";
-
-                            $result=$conn->query($sql);
-
-                            if($result->num_rows>0){
-                                while($row=$result->fetch_assoc()){
-//                                    print_r($row);
-//                                    exit(0);
-                                    $n=$row['FuelId'];
-                                    echo "<option value='$n'>".$row['FuelId']."</option>";
-
-                                    $count++;
-                                }
-                            }
-                            ?>
-                        </select>
+                        </div>
 
 
                         <div class="md-form">

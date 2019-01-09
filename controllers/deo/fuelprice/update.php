@@ -6,7 +6,7 @@ if (isset($_POST['submit'])){
     $id = $_POST["edit_id"];
     $fuelId = $_POST["FuelId"];
 
-    $where = ["id" => $id];
+    $where = "id = '$id'";
 
     $isFuelUpdateSuccessful = update("fuelprice", $_POST, $where);
 

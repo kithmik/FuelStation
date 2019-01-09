@@ -6,12 +6,17 @@ if(!isset($_SESSION['user'])){
     header("Location: /index.php");
     exit(0);
 }
+require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
+
 $document_root = $_SERVER['DOCUMENT_ROOT'];
 
 $update_path = "/controllers/deo/fuel/sale/update.php";
 $delete_path = "/controllers/deo/fuel/sale/delete.php";
 $create_path = "/controllers/deo/fuel/sale/store.php";
 $include_path = $document_root."/views/includes";
+
+$pumps = getData("pump");
+$pumpers = getData("pumper");
 
 ?>
 <!doctype html>
@@ -46,12 +51,32 @@ include_once($include_path."/navbar.php");
 
                         <div class="md-form">
                             <label for="PumpId">Pump Id</label>
-                            <input type="text" name="PumpId" id="PumpId" class="form-control">
+                            <select name="PumpId" id="PumpId" class="mdb-select md-for">
+                                <?php
+                                foreach ($pumps as $pump) {
+                                    ?>
+                                    <option value="<?php echo $pump['PumpId']; ?>">
+                                        <?php echo $pump['PumpId']; ?>
+                                    </option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
 
                         <div class="md-form">
                             <label for="PumperId">Pumper Id</label>
-                            <input type="text" name="PumperId" id="PumperId" class="form-control">
+                            <select name="PumperId" id="PumperId" class="mdb-select md-for">
+                                <?php
+                                foreach ($pumpers as $pumper) {
+                                    ?>
+                                    <option value="<?php echo $pumper['PumperId']; ?>">
+                                        <?php echo $pumper['PumperId']; ?>
+                                    </option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
                         </div>
 
                         <div class="md-form">
@@ -75,27 +100,16 @@ include_once($include_path."/navbar.php");
 
                         <div class="md-form">
                             <label for="stime">Starting Time</label><br><br>
-                            <input class="form-control" type="time" id="time" name="Stime" required><br>
+                            <input class="form-control" type="text" id="time" name="Stime" required><br>
                         </div>
 
 
                         <div class="md-form">
                             <label for="etime">Ending Time</label><br><br>
-                            <input class="form-control" type="time" id="etime" name="Etime" required><br>
+                            <input class="form-control" type="text" id="etime" name="Etime" required><br>
                         </div>
 
-                        <div class="md-form">
-                            <label for="cashsale">Cash Sale</label><br><br>
-                            <input class="form-control" type="text" id="cashsale" name="Cashsale" required><br>
-                        </div>
 
-                        <!--<div class="md-form">
-                            <label for="debtorsales">Debtor Sales</label><br><br>
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">Rs.</div>
-                                <input class="form-control" type="text" id="debtorsales" name="debtorsales" ><br>
-                            </div>
-                        </div>-->
 
                         <div class="md-form">
 

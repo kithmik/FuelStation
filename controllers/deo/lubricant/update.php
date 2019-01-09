@@ -2,11 +2,15 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 
+/**
+ * Update the lubricant data
+ */
+
 if (isset($_POST['submit'])){
 
     $id=$_POST['edit_id'];
 
-    $where=['id' => $id];
+    $where = "id = '$id'";
 
     $isLubricantUpdateSuccessful = update("lubricant", $_POST, $where);
 

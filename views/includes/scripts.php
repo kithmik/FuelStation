@@ -45,10 +45,9 @@ if (isset($_SESSION['status'])){
 
 
 <script>
+    // Material Select Initialization
     $(document).ready(function() {
         $('.mdb-select').materialSelect();
-        $('.datepicker').pickadate({
-            editable: false
-        });
     });
 </script>
+

@@ -19,10 +19,10 @@ if (isset($_POST['submit'])){
 
 
         if ($conn->query($sql) === TRUE) {
-//            echo "<script>window.alert('Successfully added !');
-//    			window.location='pumpregdeo.php'</script>";
+
             $_SESSION['status'] = "Record was successfully inserted!";
-            header("Location: /views/fuelprice/");
+
+            header("Location: /views/fuelprice/index.php");
 
 
         } else {

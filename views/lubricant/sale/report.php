@@ -44,16 +44,19 @@ include_once($include_path."/navbar.php");
                     <div class="row">
 
                         <form action="" method="POST">
-                            <input type="text" name="from" placeholder="from">
-                            <br>
-                            <input type="text" name="to" placeholder="to">
-                            <input type="submit" name="submit">
+
+                            <input class="form-control" type="text" id="from" name="from" placeholder="From" required><br>
+
+                            <input class="form-control" type="text" id="to" name="to" placeholder="To" required><br>
+
+                            <input type="submit" name="submit" class="form-control btn btn-primary">
+
                         </form>
                     </div>
 
 
                     <div class="table">
-                        <table id="report-data-table" class="table table-striped" cellspacing="0" >
+                        <table  class="datatable table table-striped" cellspacing="0" >
 
                             <thead>
                             <tr>
@@ -65,7 +68,7 @@ include_once($include_path."/navbar.php");
                                 <th>Cash Sales</th>
                                 <th>Debtor Sales</th>
                                 <th>Card Sales</th>
-                                <th>Cashsale</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -74,16 +77,15 @@ include_once($include_path."/navbar.php");
                                 foreach ($lubricantsales as $row => $lubricantsale) {
                                     $id = $lubricantsale["id"];
                                     echo "<tr>";
-                                    echo "<td>$id</td>";
+
                                     echo "<td>" . $lubricantsale["LubricantId"] . "</td>";
                                     echo "<td>" . $lubricantsale["Date"] . "</td>";
                                     echo "<td>" . $lubricantsale["NoOfItems"] . "</td>";
                                     echo "<td>" . $lubricantsale["TotalAmount"] . "</td>";
                                     echo "<td>" . $lubricantsale["Cashsale"] . "</td>";
-                                    echo "<td>" . $lubricantsale["DebtorSale"] . "</td>";
-                                    echo "<td>" . $lubricantsale["CardSale"] . "</td>";
+                                    echo "<td>" . $lubricantsale["Debtorsale"] . "</td>";
+                                    echo "<td>" . $lubricantsale["Cardsale"] . "</td>";
 
-                                    echo "</td>";
                                     echo "</tr>";
                                 }
                             }
@@ -109,51 +111,20 @@ include_once($include_path."/navbar.php");
 </div>
 
 <?php
-//    require_once ($include_path.'/footer.php');
-//    require_once($include_path."/scripts.php");
+    require_once ($include_path.'/footer.php');
+   require_once($include_path."/scripts.php");
 
 ?>
 
-<script src="/libs/js/jquery-3.3.1.min.js"></script>
 
-<script src="/libs/js/popper.min.js" ></script>
-<script src="/libs/js/bootstrap.js" ></script>
-<script src="/libs/js/mdb.js" ></script>
-
-<script src="/libs/js/compiled.min.js" defer></script>
-
-<!--<script src="/libs/js/bootstrap.min.js"></script>-->
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-
-
-<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.bootstrap4.min.js"></script>
-
-
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js">
-</script>
-<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js">
-</script>
-<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.40/pdfmake.js">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.40/vfs_fonts.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js">
-</script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js">
-</script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-
-<script type="text/javascript">
+<script>
     $(document).ready(function() {
-
-        $('#report-data-table').DataTable({
+        $('.datatable').DataTable({
             responsive: true,
             dom: 'Bfrtip',
             lengthChange: false,
             buttons: [
-                { extend: 'copy', className: 'btn btn-outline-info m-1 p-1' },
+
                 { extend: 'print', className: 'btn btn-outline-info m-1 p-1' },
                 {
                     extend: 'excelHtml5', className: 'btn btn-outline-info m-1 p-1'
@@ -162,10 +133,11 @@ include_once($include_path."/navbar.php");
                     extend: 'pdfHtml5',
                     orientation: 'landscape',
                     pageSize: 'A3', className: 'btn btn-outline-info m-1 p-1'
-                }
+                },
+                { extend: 'colvis', className: 'btn btn-outline-info m-1 p-1' },
             ]
         });
-    } );
+    });
 </script>
 
 </body>

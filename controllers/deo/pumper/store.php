@@ -18,21 +18,19 @@ if (isset($_POST['submit'])){
         $Allowances=$_POST['allowances'];
 
 
-        $sql="INSERT INTO Pumper(NIC,PumperId,FirstName,LastName,DOB,Address,TelephoneNo,BasicSalary,Allowances) VALUES ('$NIC','$PumperId,'$FirstName','$LastName','$DOB','$Address','$cno','$Basicsalary','Allowances')";
+        $sql="INSERT INTO Pumper(NIC,PumperId,FirstName,LastName,DOB,Address,TelephoneNo,BasicSalary,Allowances) VALUES ('$NIC','$PumperId,'$FirstName','$LastName','$DOB','$Address','$cno','$Basicsalary','$Allowances')";
 
 
         if ($conn->query($sql) === TRUE) {
-//            echo "<script>window.alert('Successfully added !');
-//    			window.location='pumpregdeo.php'</script>";
+
             $_SESSION['status'] = "Record was successfully inserted!";
-            header("Location: /views/pumper/");
+            header("Location: /views/pumper/index.php");
 
 
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
-
 
 
     if (isset($_SERVER['HTTP_REFERER'])){

@@ -44,8 +44,18 @@ include_once($include_path."/navbar.php");
                 </div>
                 <div class="card-body">
 
+
+                    <div class="row">
+                        <div class="col">
+                            <a href="/views/pumper/create.php" class="btn btn-success">
+                                Create New  <i class="fa fa-plus" aria-expanded="false"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
                     <div class="table responsive">
-                        <table class="table table-striped datatable" cellspacing="0" width="100%">
+                        <table class="table table-striped datatable" cellspacing="0">
 
                             <thead>
                             <tr>
@@ -59,7 +69,6 @@ include_once($include_path."/navbar.php");
                                 <th>TelephoneNo</th>
                                 <th>BasicSalary</th>
                                 <th>Allowances</th>
-                                <th>OTRate</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -78,7 +87,6 @@ include_once($include_path."/navbar.php");
                                 echo "<td>".$pumper["TelephoneNo"]."</td>";
                                 echo "<td>".$pumper["BasicSalary"]."</td>";
                                 echo "<td>".$pumper["Allowances"]."</td>";
-                                echo "<td>".$pumper["OTRate"]."</td>";
                                 echo "<td>";
                                 echo "<button class='btn btn-warning edit-modal-btn btn-sm' type='button' data-toggle='modal' data-target='#edit-modal' data-id='$id'>Edit</button>";
                                 echo "<button class='btn btn-danger btn-sm delete-modal-btn' type='button' data-toggle='modal' data-target='#delete-modal' data-id='$id'>Delete</button>";
@@ -113,44 +121,41 @@ include_once($include_path."/navbar.php");
 
                                     <div class="md-form">
                                         <label for="NIC">NIC</label>
-                                        <input type="text" name="NIC" id="NIC" class="form-control">
+                                        <input type="text" name="NIC" id="NIC" class="form-control" value=" " required>
                                     </div>
                                     <div class="md-form">
                                         <label for="EmpId">EmpId</label>
-                                        <input type="text" name="EmpId" id="EmpId" class="form-control">
+                                        <input type="text" name="EmpId" id="EmpId" class="form-control" value=" " required>
                                     </div>
                                     <div class="md-form">
                                         <label for="FirstName">FirstName</label>
-                                        <input type="text" name="FirstName" id="FirstName" class="form-control">
+                                        <input type="text" name="FirstName" id="FirstName" class="form-control" value=" " required>
                                     </div>
                                     <div class="md-form">
                                         <label for="LastName">LastName</label>
-                                        <input type="text" name="LastName" id="LastName" class="form-control">
+                                        <input type="text" name="LastName" id="LastName" class="form-control"value=" " required>
                                     </div>
                                     <div class="md-form">
                                         <label for="DOB">DOB</label>
-                                        <input type="text" name="DOB" id="DOB" class="form-control">
+                                        <input type="text" name="DOB" id="DOB" class="form-control"value=" " required>
                                     </div>
                                     <div class="md-form">
                                         <label for="Address">Address</label>
-                                        <input type="text" name="Address" id="Address" class="form-control">
+                                        <input type="text" name="Address" id="Address" class="form-control"value=" " required>
                                     </div>
                                     <div class="md-form">
                                         <label for="TelephoneNo">TelephoneNo</label>
-                                        <input type="text" name="TelephoneNo" id="TelephoneNo" class="form-control">
+                                        <input type="text" name="TelephoneNo" id="TelephoneNo" class="form-control"value=" " required>
                                     </div>
                                     <div class="md-form">
                                         <label for="BasicSalary">BasicSalary</label>
-                                        <input type="text" name="BasicSalary" id="BasicSalary" class="form-control">
+                                        <input type="text" name="BasicSalary" id="BasicSalary" class="form-control" value=" " required>
                                     </div>
                                     <div class="md-form">
                                         <label for="Allowances">Allowances</label>
-                                        <input type="text" name="Allowances" id="Allowances" class="form-control">
+                                        <input type="text" name="Allowances" id="Allowances" class="form-control" value=" " required>
                                     </div>
-                                    <div class="md-form">
-                                        <label for="OTRate">OTRate</label>
-                                        <input type="text" name="OTRate" id="OTRate" class="form-control">
-                                    </div>
+
 
                                     <div class="md-form">
                                         <input type="submit" class="btn btn-default" name="submit" id="submit-edit">
@@ -245,22 +250,6 @@ include_once($include_path."/navbar.php");
                 $("#edit-modal").show();
             });
 
-            /*$("#submit-edit").click(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: "update.php",
-                    data: $("#edit-form").serializeArray(),
-                    method: "post",
-                    success: function (data) {
-                        console.log("data: "+data);
-                        $("#status-text").html("Server sent: "+data);
-                    },
-                    error: function (err) {
-                        $("#status-text").html("An error occured: "+err);
-                    }
-
-                });
-            });*/
 
             $(".delete-modal-btn").click(function (e) {
                 e.preventDefault();
@@ -286,27 +275,5 @@ include_once($include_path."/navbar.php");
     include_once ($include_path.'/footer.php');
     ?>
 
-    <script>
-        $(document).ready(function() {
-            $('.datatable').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                lengthChange: false,
-                buttons: [
-
-                    { extend: 'print', className: 'btn btn-outline-info m-1 p-1' },
-                    {
-                        extend: 'excelHtml5', className: 'btn btn-outline-info m-1 p-1'
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A3', className: 'btn btn-outline-info m-1 p-1'
-                    },
-                    { extend: 'colvis', className: 'btn btn-outline-info m-1 p-1' },
-                ]
-            });
-        });
-    </script>
 </body>
 </html>

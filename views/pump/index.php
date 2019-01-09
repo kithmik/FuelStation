@@ -44,13 +44,19 @@ include_once($include_path."/navbar.php");
                 </div>
                 <div class="card-body">
 
+                    <div class="row">
+                        <div class="col">
+                            <a href="/views/pump/create.php" class="btn btn-success">
+                                Create New  <i class="fa fa-plus" aria-expanded="false"></i>
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="table responsive">
-                        <table id="fuel-data" class="table table-striped datatable" cellspacing="0" width="100%">
+                        <table class="table table-striped datatable" cellspacing="0" width="100%">
 
                             <thead>
                             <tr>
-
-
                                 <th>PumpId</th>
                                 <th>TankId</th>
                                 <th>Action</th>
@@ -64,6 +70,7 @@ include_once($include_path."/navbar.php");
 
                                 echo "<td>".$pump["PumpId"]."</td>";
                                 echo "<td>".$pump["TankId"]."</td>";
+
                                 echo "<td>";
                                 echo "<button class='btn btn-warning edit-modal-btn btn-sm' type='button' data-toggle='modal' data-target='#edit-modal' data-id='$id'>Edit</button>";
                                 echo "<button class='btn btn-danger btn-sm delete-modal-btn' type='button' data-toggle='modal' data-target='#delete-modal' data-id='$id'>Delete</button>";
@@ -87,7 +94,7 @@ include_once($include_path."/navbar.php");
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Edit Pumper Record</h4>
+                                <h4 class="modal-title">Edit Pump Record</h4>
                             </div>
                             <div class="modal-body">
                                 <!--                            <div id="status-text"></div>
@@ -97,12 +104,12 @@ include_once($include_path."/navbar.php");
                                     <input type="hidden" id="edit_id" name="edit_id" value="">
 
                                     <div class="md-form">
-                                        <label for="PumpId" class="active">PumpId</label>
-                                        <input type="text" name="PumpId" id="PumpId" class="form-control active">
+                                        <label for="PumpId">PumpId</label>
+                                        <input type="text" name="PumpId" id="PumpId" value=" " class="form-control" required>
                                     </div>
                                     <div class="md-form">
                                         <label for="TankId">TankId</label>
-                                        <input type="text" name="TankId" id="TankId" class="form-control">
+                                        <input type="text" name="TankId" id="TankId" value=" " class="form-control" required>
                                     </div>
 
                                     <div class="md-form">
@@ -182,7 +189,7 @@ include_once($include_path."/navbar.php");
                 $("#edit_id").attr("value", id);
 
                 var len = pumps.length;
-                console.log(len);
+
                 for (var i = 0; i < len; i++){
                     var pump = pumps[i];
                     if (pump.id == id){
@@ -198,22 +205,6 @@ include_once($include_path."/navbar.php");
                 $("#edit-modal").show();
             });
 
-            /*$("#submit-edit").click(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: "update.php",
-                    data: $("#edit-form").serializeArray(),
-                    method: "post",
-                    success: function (data) {
-                        console.log("data: "+data);
-                        $("#status-text").html("Server sent: "+data);
-                    },
-                    error: function (err) {
-                        $("#status-text").html("An error occured: "+err);
-                    }
-
-                });
-            });*/
 
             $(".delete-modal-btn").click(function (e) {
                 e.preventDefault();
@@ -223,10 +214,6 @@ include_once($include_path."/navbar.php");
                 $("#delete-modal").show();
             });
 
-            /*$(".close").click(function (e) {
-                e.preventDefault();
-                $('.modal').hide();
-            });*/
 
         });
     </script>

@@ -36,7 +36,7 @@ include_once($include_path."/navbar.php");
         <div class="col-md-7 pt-5">
             <div class="card">
                 <div class="card-header">
-                    Fuel Register
+                    Fuel Sales Details
 
                 </div>
                 <div class="card-body">
@@ -44,38 +44,42 @@ include_once($include_path."/navbar.php");
                     <div class="row">
 
                         <form action="" method="POST">
-                            <input type="text" name="from" placeholder="from">
-                            <br>
-                            <input type="text" name="to" placeholder="to">
-                            <input type="submit" name="submit">
+                            <input class="form-control" type="text" id="from" name="from" placeholder="From" required><br>
+
+                            <input class="form-control" type="text" id="to" name="to" placeholder="To" required><br>
+
+                            <input type="submit" name="submit" class="form-control btn btn-primary">
                         </form>
                     </div>
 
 
                     <div class="table">
-                        <table id="report-data-table" class="table table-striped" cellspacing="0" >
+                        <table  class="table table-striped datatable" cellspacing="0" >
 
                             <thead>
                             <tr>
-                                <th>ID</th>
+
                                 <th>Pump Id</th>
                                 <th>Pumper Id</th>
                                 <th>Date</th>
-                                <th>OMReading</th>
-                                <th>CMReading</th>
-                                <th>Stime</th>
-                                <th>Etime</th>
-                                <th>TotalAmount</th>
-                                <th>Cashsale</th>
+                                <th>Opening MeterReading</th>
+                                <th>Closing Meter Reading</th>
+                                <th>Start time</th>
+                                <th>End time time</th>
+                                <th>TotalAmount(Liters)</th>
+                                <th>Debtor Sale</th>
+                                <th>Card Sale</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
+
                             if (isset($fuelsales)) {
+
                                 foreach ($fuelsales as $row => $fuelsale) {
                                     $id = $fuelsale["id"];
                                     echo "<tr>";
-                                    echo "<td>$id</td>";
+
                                     echo "<td>" . $fuelsale["PumpId"] . "</td>";
                                     echo "<td>" . $fuelsale["PumperId"] . "</td>";
                                     echo "<td>" . $fuelsale["Date"] . "</td>";
@@ -84,17 +88,32 @@ include_once($include_path."/navbar.php");
                                     echo "<td>" . $fuelsale["Stime"] . "</td>";
                                     echo "<td>" . $fuelsale["Etime"] . "</td>";
                                     echo "<td>" . $fuelsale["TotalAmount"] . "</td>";
-                                    echo "<td>" . $fuelsale["Cashsale"] . "</td>";
                                     echo "<td>" . $fuelsale["DebtorSales"] . "</td>";
                                     echo "<td>" . $fuelsale["CardSales"] . "</td>";
                                     echo "</td>";
                                     echo "</tr>";
                                 }
+
                             }
+
+
+
+
+
                             ?>
                             </tbody>
 
+                            <caption>
+                                <?php
+                                if (isset($totalliter)){
+                                    echo "Total Amount Of Fuel Sold (Liters)- $totalliter";
+                                }
+                                ?>
+                            </caption>
+
                         </table>
+
+
                     </div>
 
 
@@ -112,65 +131,36 @@ include_once($include_path."/navbar.php");
 
 </div>
 
-    <?php
-//    require_once ($include_path.'/footer.php');
-//    require_once($include_path."/scripts.php");
+<?php
+    require_once ($include_path.'/footer.php');
+    require_once($include_path."/scripts.php");
 
     ?>
 
-<script src="/libs/js/jquery-3.3.1.min.js"></script>
-
-<script src="/libs/js/popper.min.js" ></script>
-<script src="/libs/js/bootstrap.js" ></script>
-<script src="/libs/js/mdb.js" ></script>
-
-<script src="/libs/js/compiled.min.js" defer></script>
-
-<!--<script src="/libs/js/bootstrap.min.js"></script>-->
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 
 
-<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.datatable').DataTable({
+            responsive: true,
+            dom: 'Bfrtip',
+            lengthChange: false,
+            buttons: [
 
-
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js">
+                { extend: 'print', className: 'btn btn-outline-info m-1 p-1' },
+                {
+                    extend: 'excelHtml5', className: 'btn btn-outline-info m-1 p-1'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'A3', className: 'btn btn-outline-info m-1 p-1'
+                },
+                { extend: 'colvis', className: 'btn btn-outline-info m-1 p-1' },
+            ]
+        });
+    });
 </script>
-<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js">
-</script>
-<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.40/pdfmake.js">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.40/vfs_fonts.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js">
-</script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js">
-</script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-
-            $('#report-data-table').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                lengthChange: false,
-                buttons: [
-                    { extend: 'copy', className: 'btn btn-outline-info m-1 p-1' },
-                    { extend: 'print', className: 'btn btn-outline-info m-1 p-1' },
-                    {
-                        extend: 'excelHtml5', className: 'btn btn-outline-info m-1 p-1'
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'A3', className: 'btn btn-outline-info m-1 p-1'
-                    }
-                ]
-            });
-        } );
-    </script>
 
 </body>
 </html>

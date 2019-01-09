@@ -161,14 +161,6 @@ $login_path = "/controllers/login.php";
                                     <hr>
 
 
-                                    <fieldset class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember">
-
-                                        <label class="form-check-label dark-grey-text" for="remember">
-                                            Remember Me
-                                        </label>
-
-                                    </fieldset>
                                 </div>
 
                             </form>

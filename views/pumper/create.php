@@ -39,7 +39,7 @@ include_once($include_path."/navbar.php");
         <div class="col-md-7 pt-5">
             <div class="card">
                 <div class="card-header">
-                    Pump Register
+                    Pumper Register
 
                 </div>
                 <div class="card-body">
@@ -107,6 +107,7 @@ include_once($include_path."/navbar.php");
                             <input class="form-control" type="text" id="allowances" name="allowances" required><br>
 
                         </div>
+
 
                         <div class="md-form">
                             <input type="submit" name="submit" value="Submit" class="form-control btn btn-primary">

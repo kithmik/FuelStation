@@ -94,7 +94,7 @@ include_once($include_path."/navbar.php");
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Edit Pumper Record</h4>
+                                <h4 class="modal-title">Edit Lubricant Record</h4>
                             </div>
                             <div class="modal-body">
                                 <!--                            <div id="status-text"></div>
@@ -105,11 +105,11 @@ include_once($include_path."/navbar.php");
 
                                     <div class="md-form">
                                         <label for="LubricantId">LubricantId</label>
-                                        <input type="text" name="LubricantId" id="LubricantId" class="form-control">
+                                        <input type="text" name="LubricantId" id="LubricantId" value=" " class="form-control" required>
                                     </div>
                                     <div class="md-form">
                                         <label for="LubricantName">LubricantName</label>
-                                        <input type="text" name="LubricantName" id="LubricantName" class="form-control">
+                                        <input type="text" name="LubricantName" id="LubricantName" value=" " class="form-control" required>
                                     </div>
 
                                     <div class="md-form">
@@ -138,7 +138,7 @@ include_once($include_path."/navbar.php");
                         <div class="modal-content">
                             <div class="modal-header">
 
-                                <h4 class="modal-title">Delete Fuel Record</h4>
+                                <h4 class="modal-title">Delete Lubricant Record</h4>
 
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>

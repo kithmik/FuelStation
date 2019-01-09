@@ -101,11 +101,11 @@ include_once($include_path."/navbar.php");
 
                                     <div class="md-form">
                                         <label for="TankId">TankId</label>
-                                        <input type="text" value=" " name="TankId" id="TankId" class="form-control">
+                                        <input type="text" value=" " name="TankId" id="TankId"   class="form-control">
                                     </div>
                                     <div class="md-form">
                                         <label for="FuelId">FuelId</label>
-                                        <input type="text" value=" " name="FuelId" id="FuelId" class="form-control">
+                                        <input type="text" value=" " name="FuelId" id="FuelId"   class="form-control">
                                     </div>
                                     <div class="md-form">
                                         <label for="Capacity">Capacity</label>
