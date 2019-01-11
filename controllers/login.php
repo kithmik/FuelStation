@@ -31,7 +31,10 @@ if(isset($_POST['login']))
     else
     {
         echo "<script>alert('Employee ID or Password is invalid')</script>";
+        echo "<script>window.location = '/views/login.php'</script>";
+//        header("Location: /views/login.php");
     }
+
 
 }
 ?>

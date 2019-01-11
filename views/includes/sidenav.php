@@ -10,9 +10,9 @@
         <a href="/" class="list-group-item active waves-effect">
             <i class="fas fa-chart-pie mr-3"></i>Dashboard
         </a>
-        <a href="#" class="list-group-item waves-effect">
+        <!--<a href="#" class="list-group-item waves-effect">
             <i class="fas fa-chart-pie mr-3"></i>User Manuals
-        </a>
+        </a>-->
         <?php
         if (isset($_SESSION['user']) && $_SESSION['user']['Type'] == "Data Entry Operator"){
         ?>

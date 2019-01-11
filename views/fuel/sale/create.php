@@ -66,12 +66,13 @@ include_once($include_path."/navbar.php");
 
                         <div class="md-form">
                             <label for="PumperId">Pumper Id</label>
-                            <select name="PumperId" id="PumperId" class="mdb-select md-for">
+                            <select name="PumperId" id="PumperId" class="mdb-select md-form">
                                 <?php
                                 foreach ($pumpers as $pumper) {
+
                                     ?>
-                                    <option value="<?php echo $pumper['PumperId']; ?>">
-                                        <?php echo $pumper['PumperId']; ?>
+                                    <option value="<?php echo $pumper['EmpId']; ?>">
+                                        <?php echo $pumper['EmpId']; ?>
                                     </option>
                                     <?php
                                 }
@@ -109,6 +110,14 @@ include_once($include_path."/navbar.php");
                             <input class="form-control" type="text" id="etime" name="Etime" required><br>
                         </div>
 
+                        <div class="md-form">
+
+                            <label for="DebtorSales">Debtor Sales</label><br><br>
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Rs.</div>
+                                <input class="form-control" type="text" id="DebtorSales" name="DebtorSales" ><br>
+                            </div>
+                        </div>
 
 
                         <div class="md-form">

@@ -6,13 +6,14 @@ if(!isset($_SESSION['user'])){
     header("Location: ".$_SERVER['DOCUMENT_ROOT']."/index.php");
     exit(0);
 }
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/models/Model.php");
 $document_root = $_SERVER['DOCUMENT_ROOT'];
 
-$update_path = "/controllers/deo/lubricant/sale/update.php";
-$delete_path = "/controllers/deo/lubricant/sale/delete.php";
 $create_path = "/controllers/deo/lubricant/sale/store.php";
 $include_path = $document_root."/views/includes";
 
+$lubricants = getData('lubricant');
 
 ?>
 <!doctype html>
@@ -48,9 +49,20 @@ include_once($include_path."/navbar.php");
 
 
                         <div class="md-form">
-                            <label for="LubricantId">Lubricant ID</label><br><br>
-                            <input class="form-control" type="text" id="LubricantId" name="LubricantId" required><br>
 
+                            <label for="LubricantId">Lubricant ID</label>
+                            <select name="LubricantId" id="LubricantId" class="mdb-select md-form">
+                                <?php
+                                foreach ($lubricants as $lubricant) {
+
+                                    ?>
+                                    <option value="<?php echo $lubricant['LubricantId']; ?>">
+                                        <?php echo $lubricant['LubricantId']; ?>
+                                    </option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
                         </div>
 
                         <div class="md-form">

@@ -253,7 +253,5 @@ include_once($include_path."/navbar.php");
     include_once ($include_path.'/footer.php');
     ?>
 
-    ?>
-
 </body>
 </html>

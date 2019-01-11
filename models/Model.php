@@ -15,15 +15,14 @@ if($conn -> connect_error){
     die("Connection Failed." . $conn->connect_error);
 }
 
-/**
- * Parameters:- $table (String), $data (An associative array)
- *
- * This function validates an associative array according to the fields in a table
- * It gets all the fields in the table by the MySQL DESCRIBE command, and then checks the keys of the data array
- * If any key in the data array is not present in the table fields, then it is removed using the unset command
- *
- * Returns:- The filtered $data array (by it's keys corresponding with the table fields) or null (if incorrect table name)
-**/
+
+//  Parameters:- $table (String), $data (An associative array)
+//
+//  This function validates an associative array according to the fields in a table
+//  It gets all the fields in the table by the MySQL DESCRIBE command, and then checks the keys of the data array
+//  If any key in the data array is not present in the table fields, then it is removed using the unset command
+//
+//  Returns:- The filtered $data array (by it's keys corresponding with the table fields) or null (if incorrect table name)
 
 function filterDataForTable($table, $data){
     global $conn;
@@ -56,38 +55,38 @@ function filterDataForTable($table, $data){
 
 }
 
-/**
- * Parameters:- $value (Pointer to a value in an array), $key (A key in an array)
- *
- * Sets the value to : key = 'value'
- * Example:- ["abc" => 123] will be converted to: ["abc" => "abc = '123'"]
- *
- * This is later used to build SQL query strings such as:
- * UPDATE SET abc = '123'
- **/
+
+//  Parameters:- $value (Pointer to a value in an array), $key (A key in an array)
+//
+//  Sets the value to : key = 'value'
+//  Example:- ["abc" => 123] will be converted to: ["abc" => "abc = '123'"]
+//
+//  This is later used to build SQL query strings such as:
+//  UPDATE SET abc = '123'
+
 
 function prepareToUpdate(&$value, $key){
     $value = "$key = '$value'";
 }
 
-/**
- * parameters:-  $table (String), $data (An associative array which includes the data to be inserted to the table)
- *
- * This is used to insert data from an associative array to a table.
- * Can call insert('fuel', $_POST)
- * If the $data is set as $_POST, the name attributes in the HTML form inputs should match the field names in the table of the database
- * The unwanted fields in the $_POST will the removed by calling the filterDataForTable() function
- *
- * Returns:- The id of the newly created row
- */
+
+//  parameters:-  $table (String), $data (An associative array which includes the data to be inserted to the table)
+//
+//  This is used to insert data from an associative array to a table.
+//  Can call insert('fuel', $_POST)
+//  If the $data is set as $_POST, the name attributes in the HTML form inputs should match the field names in the table of the database
+//  The unwanted fields in the $_POST will the removed by calling the filterDataForTable() function
+//
+//  Returns:- The id of the newly created row
+
 
 function insert($table, $data){
 
     global $conn;
 
-    /**
-     * Remove the unnecessary elements (which are not in the $table in the database), from the $data associative array
-     */
+
+// Remove the unnecessary elements (which are not in the $table in the database), from the $data associative array
+
 
     $data = filterDataForTable($table, $data);
 
@@ -112,31 +111,30 @@ function insert($table, $data){
 
 
 
-/**
- * parameters:-  $table (String), $data (An associative array which includes the data to be inserted to the table),
- *                  $where (for example when this function is been called $where will be set to: id = '$id')
- *
- * This is used to update data from an associative array to a table.
- * Can call update('fuel', $_POST, "id = '$id'")
- * If the $data is set as $_POST, the name attributes in the HTML form inputs should match the field names in the table of the database
- * The unwanted fields in the $_POST will the removed by calling the filterDataForTable() function
- *
- * Returns:- true if successfully updated,or fault.
- */
+
+// parameters:-  $table (String), $data (An associative array which includes the data to be inserted to the table),
+//                  $where (for example when this function is been called $where will be set to: id = '$id')
+//
+// This is used to update data from an associative array to a table.
+// Can call update('fuel', $_POST, "id = '$id'")
+// If the $data is set as $_POST, the name attributes in the HTML form inputs should match the field names in the table of the database
+// The unwanted fields in the $_POST will the removed by calling the filterDataForTable() function
+//
+// Returns:- true if successfully updated,or fault.
 
 
 function update($table, $data, $where = "1"){
     global $conn;
 
-    /**
-     * Remove the unnecessary elements (which are not in the $table in the database), from the $data associative array
-     */
+//
+//  Remove the unnecessary elements (which are not in the $table in the database), from the $data associative array
+//
     $data = filterDataForTable($table, $data);
 
-    /**
-     * Example:- $data: $_POST[] -->> $_POST[] = ["submit" => "Submit", "id" => "4", "EmpName" => "Abc", "NIC" => "93874832423V"]
-     * "submit" => "Submit" will be removed after calling filterDataForTable()
-     */
+//
+//  Example:- $data: $_POST[] -->> $_POST[] = ["submit" => "Submit", "id" => "4", "EmpName" => "Abc", "NIC" => "93874832423V"]
+//  "submit" => "Submit" will be removed after calling filterDataForTable()
+//
 
     if ($data != null){
         array_walk($data, "prepareToUpdate");
@@ -156,13 +154,13 @@ function update($table, $data, $where = "1"){
 }
 
 
-/**
- * parameters:-  $table (String), $where(for example when this function is been called $where will be set to: id = '$id')
- *
- * This is used to delete data from a table when an id is provided
- *
- * Returns:- true if successfully updated,or fault.
- */
+//
+//  parameters:-  $table (String), $where(for example when this function is been called $where will be set to: id = '$id')
+//
+//  This is used to delete data from a table when an id is provided
+//
+//  Returns:- true if successfully updated,or fault.
+//
 
 
 function delete($table, $where){
@@ -183,13 +181,13 @@ function delete($table, $where){
 }
 
 
-/**
- * parameters:-  $table (String), $field(can be an array or a string), $where(if any where condition is specified as a string)
- *
- * This is used to fetch data from a table default where is 1
- *
- * Returns:- true if successfully updated,or fault.
- */
+//
+//  parameters:-  $table (String), $field(can be an array or a string), $where(if any where condition is specified as a string)
+//
+//  This is used to fetch data from a table default where is 1
+//
+//  Returns:- true if successfully updated,or fault.
+//
 
 
 
@@ -225,13 +223,13 @@ function getData($table, $fields = "*", $where = "1"){
     return $dataset;
 }
 
-/**
- * parameters:-  $sql(sql query string)
- * can use to select with joins, limits of any other customized sql statement with return a dataset.
- *  execute a sql query
- *
- * Returns:- fetched dataset as a multidimentional associative array
- */
+//
+//  parameters:-  $sql(sql query string)
+//  can use to select with joins, limits of any other customized sql statement with return a dataset.
+//   execute a sql query
+//
+//  Returns:- fetched dataset as a multidimentional associative array
+//
 
 
 function customGetData($sql){
@@ -247,16 +245,16 @@ function customGetData($sql){
     return $dataset;
 }
 
-/**
- * parameters:-  $sql(sql query string)
- *
- *  execute a sql query
- *  can use to execute -delete,update with customized sql statement with does not return a data set.
+//
+//  parameters:-  $sql(sql query string)
+//
+//   execute a sql query
+//   can use to execute -delete,update with customized sql statement with does not return a data set.
+//
+//  Returns:- true if successfully updated,or fault.
+//
 
- * Returns:- true if successfully updated,or fault.
- */
-
-
+/*
 function customExecuteQuery($sql){
     global $conn;
 
@@ -266,4 +264,4 @@ function customExecuteQuery($sql){
     else{
         return false;
     }
-}
+}*/
